@@ -5,7 +5,7 @@ export const personal = {
   tagline: "AVAILABLE FOR OPPORTUNITIES · 2026",
   email: "bobilnagar23@gmail.com",
   phone: "+91-7828589139",
-  linkedin: "https://www.linkedin.com/in/babil-nagar-490a54328",
+  linkedin: "https://www.linkedin.com/in/bobilnagar23",
   github: "https://github.com/bobilnagar",
   location: "Bhopal, Madhya Pradesh",
   gpa: "7.91",
