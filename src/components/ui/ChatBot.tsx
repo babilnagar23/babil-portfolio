@@ -1,17 +1,102 @@
 "use client";
 
-import { useState } from "react";
-import { FiSend } from "react-icons/fi";
+import { PointerEvent, useEffect, useRef, useState } from "react";
+import { FiChevronLeft, FiChevronRight, FiMessageCircle, FiMinus, FiMove, FiSend } from "react-icons/fi";
 
 interface Message {
   role: "user" | "ai" | "error";
   text: string;
 }
 
+const WIDGET_WIDTH = 320;
+const WIDGET_HEIGHT = 330;
+const ICON_SIZE = 56;
+const EDGE_GAP = 20;
+
 export default function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [minimized, setMinimized] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const dragOffset = useRef({ x: 0, y: 0 });
+  const dragStart = useRef({ x: 0, y: 0 });
+  const didDrag = useRef(false);
+
+  const clampPosition = (x: number, y: number, width = WIDGET_WIDTH, height = WIDGET_HEIGHT) => {
+    if (typeof window === "undefined") return { x, y };
+    const maxX = Math.max(EDGE_GAP, window.innerWidth - width - EDGE_GAP);
+    const maxY = Math.max(EDGE_GAP, window.innerHeight - height - EDGE_GAP);
+
+    return {
+      x: Math.min(Math.max(EDGE_GAP, x), maxX),
+      y: Math.min(Math.max(EDGE_GAP, y), maxY),
+    };
+  };
+
+  useEffect(() => {
+    setPosition(
+      clampPosition(
+        window.innerWidth - WIDGET_WIDTH - EDGE_GAP,
+        window.innerHeight - WIDGET_HEIGHT - EDGE_GAP,
+      ),
+    );
+
+    const handleResize = () => {
+      setPosition((current) =>
+        clampPosition(
+          current.x,
+          current.y,
+          minimized ? ICON_SIZE : WIDGET_WIDTH,
+          minimized ? ICON_SIZE : WIDGET_HEIGHT,
+        ),
+      );
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [minimized]);
+
+  const startDrag = (event: PointerEvent<HTMLButtonElement>) => {
+    dragOffset.current = {
+      x: event.clientX - position.x,
+      y: event.clientY - position.y,
+    };
+    dragStart.current = { x: event.clientX, y: event.clientY };
+    didDrag.current = false;
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const dragWidget = (event: PointerEvent<HTMLButtonElement>) => {
+    if (!event.currentTarget.hasPointerCapture(event.pointerId)) return;
+    const xDistance = Math.abs(event.clientX - dragStart.current.x);
+    const yDistance = Math.abs(event.clientY - dragStart.current.y);
+    didDrag.current = xDistance > 4 || yDistance > 4;
+    setPosition(
+      clampPosition(
+        event.clientX - dragOffset.current.x,
+        event.clientY - dragOffset.current.y,
+        minimized ? ICON_SIZE : WIDGET_WIDTH,
+        minimized ? ICON_SIZE : WIDGET_HEIGHT,
+      ),
+    );
+  };
+
+  const stopDrag = (event: PointerEvent<HTMLButtonElement>) => {
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+  };
+
+  const dockLeft = () => {
+    setPosition((current) => clampPosition(EDGE_GAP, current.y));
+  };
+
+  const dockRight = () => {
+    setPosition((current) =>
+      clampPosition(window.innerWidth - WIDGET_WIDTH - EDGE_GAP, current.y),
+    );
+  };
 
   const sendMessage = async () => {
     const msg = input.trim();
@@ -45,42 +130,114 @@ export default function ChatBot() {
     }
   };
 
+  if (minimized) {
+    return (
+      <button
+        type="button"
+        onClick={() => {
+          if (!didDrag.current) setMinimized(false);
+        }}
+        onPointerDown={startDrag}
+        onPointerMove={dragWidget}
+        onPointerUp={stopDrag}
+        onPointerCancel={stopDrag}
+        className="fixed z-[9999] w-14 h-14 rounded-full bg-gradient-brand text-bright border border-white/15 shadow-glow flex items-center justify-center cursor-grab active:cursor-grabbing hover:scale-105 transition-transform"
+        style={{
+          left: position.x,
+          top: position.y,
+        }}
+        aria-label="Open Ask Babil AI"
+        title="Open Ask Babil AI"
+      >
+        <FiMessageCircle size={22} />
+      </button>
+    );
+  }
+
   return (
     <aside
-      className="fixed bottom-5 right-5 w-80 card-glass rounded-2xl z-[9999] shadow-glow overflow-hidden"
+      className="fixed w-80 card-glass rounded-2xl z-[9999] shadow-glow overflow-visible"
+      style={{
+        left: position.x,
+        top: position.y,
+      }}
       aria-label="AI chat assistant"
     >
-      <header className="px-4 py-3 bg-gradient-brand text-bright font-semibold text-sm">
-        Ask Babil AI
-      </header>
-      <div className="h-[220px] overflow-y-auto p-3 text-sm space-y-2">
-        {messages.length === 0 && (
-          <p className="text-dim text-xs">Ask about my skills, projects, or experience.</p>
-        )}
-        {messages.map((m, i) => (
-          <p key={i} className={m.role === "error" ? "text-red-400" : "text-txt"}>
-            <strong className="text-bright">{m.role === "user" ? "You" : "AI"}:</strong> {m.text}
-          </p>
-        ))}
-        {loading && <p className="text-dim text-xs">Thinking...</p>}
-      </div>
-      <div className="flex border-t border-white/[0.06]">
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-          placeholder="Ask about me..."
-          className="flex-1 p-3 bg-transparent border-none text-bright focus:outline-none text-sm"
-        />
-        <button
-          type="button"
-          onClick={sendMessage}
-          disabled={loading}
-          className="px-4 text-accent hover:text-bright transition-colors disabled:opacity-50 bg-transparent border-none cursor-pointer"
-          aria-label="Send"
-        >
-          <FiSend />
-        </button>
+      <button
+        type="button"
+        onPointerDown={startDrag}
+        onPointerMove={dragWidget}
+        onPointerUp={stopDrag}
+        onPointerCancel={stopDrag}
+        className="absolute -left-3 top-1/2 -translate-y-1/2 w-7 h-16 rounded-full bg-card border border-white/15 text-accent flex items-center justify-center cursor-grab active:cursor-grabbing hover:text-bright hover:border-accent/40 transition-colors"
+        aria-label="Drag Ask Babil AI"
+        title="Drag anywhere"
+      >
+        <FiMove size={15} />
+      </button>
+
+      <div className="rounded-2xl overflow-hidden">
+        <header className="px-4 py-3 bg-gradient-brand text-bright font-semibold text-sm flex items-center justify-between gap-3">
+          <span>Ask Babil AI</span>
+          <div className="flex items-center gap-1">
+            <button
+              type="button"
+              onClick={dockLeft}
+              className="w-8 h-8 rounded-full bg-black/15 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors"
+              aria-label="Dock chat left"
+              title="Dock left"
+            >
+              <FiChevronLeft size={16} />
+            </button>
+            <button
+              type="button"
+              onClick={dockRight}
+              className="w-8 h-8 rounded-full bg-black/15 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors"
+              aria-label="Dock chat right"
+              title="Dock right"
+            >
+              <FiChevronRight size={16} />
+            </button>
+            <button
+              type="button"
+              onClick={() => setMinimized(true)}
+              className="w-8 h-8 rounded-full bg-black/15 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors"
+              aria-label="Minimize chat"
+              title="Minimize"
+            >
+              <FiMinus size={16} />
+            </button>
+          </div>
+        </header>
+        <div className="h-[220px] overflow-y-auto p-3 text-sm space-y-2">
+          {messages.length === 0 && (
+            <p className="text-dim text-xs">Ask about my skills, projects, or experience.</p>
+          )}
+          {messages.map((m, i) => (
+            <p key={i} className={m.role === "error" ? "text-red-400" : "text-txt"}>
+              <strong className="text-bright">{m.role === "user" ? "You" : "AI"}:</strong> {m.text}
+            </p>
+          ))}
+          {loading && <p className="text-dim text-xs">Thinking...</p>}
+        </div>
+        <div className="flex border-t border-white/[0.06]">
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+            placeholder="Ask about me..."
+            className="flex-1 p-3 bg-transparent border-none text-bright focus:outline-none text-sm"
+          />
+          <button
+            type="button"
+            onClick={sendMessage}
+            disabled={loading}
+            className="px-4 text-accent hover:text-bright transition-colors disabled:opacity-50 bg-transparent border-none cursor-pointer"
+            aria-label="Send"
+          >
+            <FiSend />
+          </button>
+        </div>
       </div>
     </aside>
   );
