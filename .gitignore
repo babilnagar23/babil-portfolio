@@ -1,0 +1,15 @@
+node_modules
+.next
+out
+.env*.local
+.DS_Store
+*.pem
+npm-debug.log*
+venv/
+.venv/
+backend/venv/
+__pycache__/
+*.pyc
+.env
+node_modules/
+.next/

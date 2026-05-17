@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-navy text-txt font-sans text-base leading-relaxed overflow-x-hidden antialiased;
+    cursor: none;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(168, 85, 247, 0.12), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(99, 102, 241, 0.08), transparent);
+  }
+
+  @media (pointer: coarse), (prefers-reduced-motion: reduce) {
+    body {
+      cursor: auto;
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-navy;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-accent/50 rounded-full;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-6 py-20 md:px-16 md:py-28 max-w-6xl mx-auto;
+  }
+
+  .glass-nav {
+    @apply bg-navy/70 backdrop-blur-xl border-b border-white/[0.06];
+  }
+
+  .card-glass {
+    @apply bg-card/80 border border-white/[0.06] rounded-2xl backdrop-blur-sm transition-all duration-300;
+  }
+
+  .card-glass:hover {
+    @apply border-accent/30 shadow-glow-sm;
+  }
+
+  .card-3d {
+    @apply card-glass will-change-transform;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-text bg-clip-text text-transparent;
+  }
+
+  .section-heading {
+    @apply text-3xl md:text-4xl font-bold text-bright mb-3;
+  }
+
+  .section-heading-line {
+    @apply h-1 w-24 rounded-full bg-gradient-line mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-txt text-base md:text-lg max-w-2xl mb-12 leading-relaxed;
+  }
+
+  .btn-white {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full bg-bright text-navy font-semibold text-sm no-underline transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_8px_30px_rgba(255,255,255,0.15)];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 text-bright font-semibold text-sm no-underline transition-all duration-300 hover:bg-white/5 hover:border-white/30;
+  }
+
+  .icon-btn {
+    @apply w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-txt hover:text-bright hover:border-accent/40 hover:bg-accent/10 transition-all duration-300;
+  }
+}
