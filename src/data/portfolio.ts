@@ -158,6 +158,7 @@ export const experience = {
   sectionTitle: { plain: "Beyond ", em: "Code" },
   role: "Open Source & Campus Contributor",
   org: "GIRLSCRIPT · VIT BHOPAL",
+  badge: "Current",
   date: "2023 – 2026",
   bullets: [
     "Contributor to **GirlScript Summer of Code** (2026), collaborating on open-source projects and improving real-world codebases.",
