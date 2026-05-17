@@ -44,9 +44,6 @@ export default function Experience() {
             <div>
               <h3 className="text-xl font-bold text-bright">{experience.role}</h3>
               <p className="text-accent text-sm mt-1 font-medium">{experience.org}</p>
-              <span className="inline-block mt-3 px-3 py-1 rounded-full bg-accent/15 text-accent text-xs font-medium">
-                {experience.badge}
-              </span>
             </div>
             <span className="text-dim text-sm border border-white/10 px-3 py-1 rounded-lg">
               {experience.date}
