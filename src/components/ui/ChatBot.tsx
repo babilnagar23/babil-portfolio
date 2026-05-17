@@ -23,13 +23,18 @@ export default function ChatBot() {
   const dragStart = useRef({ x: 0, y: 0 });
   const didDrag = useRef(false);
 
+  const getWidgetWidth = () => {
+    if (typeof window === "undefined") return WIDGET_WIDTH;
+    return Math.min(WIDGET_WIDTH, window.innerWidth - EDGE_GAP * 2);
+  };
+
   const clampPosition = (x: number, y: number, width = WIDGET_WIDTH, height = WIDGET_HEIGHT) => {
     if (typeof window === "undefined") return { x, y };
-    const maxX = Math.max(EDGE_GAP, window.innerWidth - width - EDGE_GAP);
+    const safeWidth = Math.min(width, window.innerWidth - EDGE_GAP * 2);
     const maxY = Math.max(EDGE_GAP, window.innerHeight - height - EDGE_GAP);
 
     return {
-      x: Math.min(Math.max(EDGE_GAP, x), maxX),
+      x: Math.min(Math.max(EDGE_GAP, x), Math.max(EDGE_GAP, window.innerWidth - safeWidth - EDGE_GAP)),
       y: Math.min(Math.max(EDGE_GAP, y), maxY),
     };
   };
@@ -37,8 +42,9 @@ export default function ChatBot() {
   useEffect(() => {
     setPosition(
       clampPosition(
-        window.innerWidth - WIDGET_WIDTH - EDGE_GAP,
+        window.innerWidth - getWidgetWidth() - EDGE_GAP,
         window.innerHeight - WIDGET_HEIGHT - EDGE_GAP,
+        getWidgetWidth(),
       ),
     );
 
@@ -47,7 +53,7 @@ export default function ChatBot() {
         clampPosition(
           current.x,
           current.y,
-          minimized ? ICON_SIZE : WIDGET_WIDTH,
+          minimized ? ICON_SIZE : getWidgetWidth(),
           minimized ? ICON_SIZE : WIDGET_HEIGHT,
         ),
       );
@@ -76,7 +82,7 @@ export default function ChatBot() {
       clampPosition(
         event.clientX - dragOffset.current.x,
         event.clientY - dragOffset.current.y,
-        minimized ? ICON_SIZE : WIDGET_WIDTH,
+        minimized ? ICON_SIZE : getWidgetWidth(),
         minimized ? ICON_SIZE : WIDGET_HEIGHT,
       ),
     );
@@ -94,7 +100,7 @@ export default function ChatBot() {
 
   const dockRight = () => {
     setPosition((current) =>
-      clampPosition(window.innerWidth - WIDGET_WIDTH - EDGE_GAP, current.y),
+      clampPosition(window.innerWidth - getWidgetWidth() - EDGE_GAP, current.y, getWidgetWidth()),
     );
   };
 
@@ -141,10 +147,11 @@ export default function ChatBot() {
         onPointerMove={dragWidget}
         onPointerUp={stopDrag}
         onPointerCancel={stopDrag}
-        className="fixed z-[9999] w-14 h-14 rounded-full bg-gradient-brand text-bright border border-white/15 shadow-glow flex items-center justify-center cursor-grab active:cursor-grabbing hover:scale-105 transition-transform"
+        className="fixed z-[9999] w-14 h-14 touch-none select-none rounded-full bg-gradient-brand text-bright border border-white/15 shadow-glow flex items-center justify-center cursor-grab active:cursor-grabbing hover:scale-105 transition-transform"
         style={{
           left: position.x,
           top: position.y,
+          touchAction: "none",
         }}
         aria-label="Open Ask Babil AI"
         title="Open Ask Babil AI"
@@ -156,8 +163,9 @@ export default function ChatBot() {
 
   return (
     <aside
-      className="fixed w-80 card-glass rounded-2xl z-[9999] shadow-glow overflow-visible"
+      className="fixed max-w-[calc(100vw-40px)] card-glass rounded-2xl z-[9999] shadow-glow overflow-visible"
       style={{
+        width: getWidgetWidth(),
         left: position.x,
         top: position.y,
       }}
@@ -169,7 +177,8 @@ export default function ChatBot() {
         onPointerMove={dragWidget}
         onPointerUp={stopDrag}
         onPointerCancel={stopDrag}
-        className="absolute -left-3 top-1/2 -translate-y-1/2 w-7 h-16 rounded-full bg-card border border-white/15 text-accent flex items-center justify-center cursor-grab active:cursor-grabbing hover:text-bright hover:border-accent/40 transition-colors"
+        className="absolute -left-3 top-1/2 -translate-y-1/2 w-7 h-16 touch-none select-none rounded-full bg-card border border-white/15 text-accent flex items-center justify-center cursor-grab active:cursor-grabbing hover:text-bright hover:border-accent/40 transition-colors"
+        style={{ touchAction: "none" }}
         aria-label="Drag Ask Babil AI"
         title="Drag anywhere"
       >
@@ -178,7 +187,20 @@ export default function ChatBot() {
 
       <div className="rounded-2xl overflow-hidden">
         <header className="px-4 py-3 bg-gradient-brand text-bright font-semibold text-sm flex items-center justify-between gap-3">
-          <span>Ask Babil AI</span>
+          <button
+            type="button"
+            onPointerDown={startDrag}
+            onPointerMove={dragWidget}
+            onPointerUp={stopDrag}
+            onPointerCancel={stopDrag}
+            className="flex min-w-0 flex-1 touch-none select-none items-center gap-2 bg-transparent border-none p-0 text-left text-bright font-semibold cursor-grab active:cursor-grabbing"
+            style={{ touchAction: "none" }}
+            aria-label="Drag Ask Babil AI"
+            title="Drag anywhere"
+          >
+            <FiMove className="shrink-0" size={15} />
+            <span className="truncate">Ask Babil AI</span>
+          </button>
           <div className="flex items-center gap-1">
             <button
               type="button"

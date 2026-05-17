@@ -3,6 +3,8 @@
 import { footer, personal } from "@/data/portfolio";
 import { FiArrowUp, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 
+const COPYRIGHT_YEAR = 2026;
+
 export default function Footer() {
   const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -27,9 +29,14 @@ export default function Footer() {
       </div>
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-6 border-t border-white/[0.06]">
         <p className="text-dim text-xs">
-          © {new Date().getFullYear()} {personal.name} {personal.lastName}. All rights reserved.
+          © {COPYRIGHT_YEAR} {personal.name} {personal.lastName}. All rights reserved.
         </p>
-        <button type="button" onClick={scrollTop} className="flex items-center gap-2 text-txt text-sm hover:text-bright transition-colors bg-transparent border-none cursor-pointer font-sans">
+        <button
+          type="button"
+          onClick={scrollTop}
+          suppressHydrationWarning
+          className="flex items-center gap-2 text-txt text-sm hover:text-bright transition-colors bg-transparent border-none cursor-pointer font-sans"
+        >
           Back to top
           <span className="icon-btn w-8 h-8"><FiArrowUp size={14} /></span>
         </button>
