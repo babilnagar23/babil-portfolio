@@ -13,14 +13,11 @@ import os
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-import faiss
-import numpy as np
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from groq import Groq
 from pydantic import BaseModel, Field
-from sentence_transformers import SentenceTransformer
 
 from knowledge import DOCS, MODELS, SYSTEM_PROMPT
 
@@ -29,26 +26,8 @@ load_dotenv(Path(__file__).parent / ".env")
 load_dotenv(Path(__file__).parent.parent / ".env")
 
 # ── Globals (initialized on startup) ─────────────────────────────────────────
-embed_model: SentenceTransformer | None = None
-faiss_index: faiss.IndexFlatL2 | None = None
 groq_client: Groq | None = None
 chat_memory: list[dict[str, str]] = []
-
-
-def _build_index() -> tuple[SentenceTransformer, faiss.IndexFlatL2]:
-    model = SentenceTransformer("all-MiniLM-L6-v2")
-    embeddings = model.encode(DOCS, show_progress_bar=False)
-    index = faiss.IndexFlatL2(embeddings.shape[1])
-    index.add(np.array(embeddings, dtype=np.float32))
-    return model, index
-
-
-def search_context(query: str, k: int = 3) -> str:
-    if embed_model is None or faiss_index is None:
-        return DOCS[0]
-    q_emb = embed_model.encode([query], show_progress_bar=False)
-    _, indices = faiss_index.search(np.array(q_emb, dtype=np.float32), k)
-    return "\n".join(DOCS[i] for i in indices[0])
 
 
 def fallback_reply(query: str) -> str:
@@ -91,16 +70,14 @@ def fallback_reply(query: str) -> str:
     if any(w in q for w in ("gpa", "education", "vit", "college")):
         return "Babil studies Integrated M.Tech CSE (Data Science) at VIT Bhopal with GPA 7.91."
 
-    context = search_context(query, k=2)
+    context = "\n".join(DOCS[:3])
     return f"Based on Babil's portfolio: {context}"
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    global embed_model, faiss_index, groq_client
+    global groq_client
 
-    print("Loading embedding model...")
-    embed_model, faiss_index = _build_index()
     print(f"Knowledge base ready ({len(DOCS)} documents).")
 
     api_key = os.getenv("GROQ_API_KEY", "").strip()
@@ -114,8 +91,6 @@ async def lifespan(app: FastAPI):
 
     yield
 
-    embed_model = None
-    faiss_index = None
     groq_client = None
 
 
@@ -158,7 +133,6 @@ def health():
     return {
         "status": "ok",
         "groq_enabled": groq_client is not None,
-        "embeddings_loaded": embed_model is not None,
     }
 
 
@@ -170,7 +144,7 @@ async def chat(req: ChatRequest):
     if len(chat_memory) > 6:
         chat_memory.pop(0)
 
-    context = search_context(user_msg)
+    context = "\n".join(DOCS[:3])
 
     if groq_client is None:
         reply = fallback_reply(user_msg)
