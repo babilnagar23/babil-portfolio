@@ -33,7 +33,7 @@ export default function Hero() {
 
           <motion.h1
             {...fade(0.2)}
-            className="text-7xl md:text-8xl lg:text-9xl font-extrabold text-bright leading-[1] mb-1"
+            className="text-7xl md:text-8xl lg:text-9xl font-extrabold text-bright leading-[1] mb-4"
             style={{ fontSize: "clamp(3.5rem, 12vw, 10rem)" }}
           >
             {personal.name}

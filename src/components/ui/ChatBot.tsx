@@ -153,8 +153,8 @@ export default function ChatBot() {
           top: position.y,
           touchAction: "none",
         }}
-        aria-label="Open Ask Babil AI"
-        title="Open Ask Babil AI"
+        aria-label="Open Ask BOB AI"
+        title="Open Ask BOB AI"
       >
         <FiMessageCircle size={22} />
       </button>
@@ -179,7 +179,7 @@ export default function ChatBot() {
         onPointerCancel={stopDrag}
         className="absolute -left-3 top-1/2 -translate-y-1/2 w-7 h-16 touch-none select-none rounded-full bg-card border border-white/15 text-accent flex items-center justify-center cursor-grab active:cursor-grabbing hover:text-bright hover:border-accent/40 transition-colors"
         style={{ touchAction: "none" }}
-        aria-label="Drag Ask Babil AI"
+        aria-label="Drag Ask BOB AI"
         title="Drag anywhere"
       >
         <FiMove size={15} />
@@ -195,11 +195,11 @@ export default function ChatBot() {
             onPointerCancel={stopDrag}
             className="flex min-w-0 flex-1 touch-none select-none items-center gap-2 bg-transparent border-none p-0 text-left text-bright font-semibold cursor-grab active:cursor-grabbing"
             style={{ touchAction: "none" }}
-            aria-label="Drag Ask Babil AI"
+            aria-label="Drag Ask BOB AI"
             title="Drag anywhere"
           >
             <FiMove className="shrink-0" size={15} />
-            <span className="truncate">Ask Babil AI</span>
+            <span className="truncate">Ask BOB AI</span>
           </button>
           <div className="flex items-center gap-1">
             <button
