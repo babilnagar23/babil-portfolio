@@ -55,10 +55,37 @@ def fallback_reply(query: str) -> str:
     if "linkedin" in q:
         return "Babil's LinkedIn: https://www.linkedin.com/in/bobilnagar23"
 
+    if any(w in q for w in ("hire", "recruit", "select", "shortlist")):
+        return (
+            "Obviously, Babil Nagar has experience in full-stack and ML projects, "
+            "so you should definitely hire him."
+        )
+
+    if any(w in q for w in ("10th", "class 10", "class x", "tenth", "high school")):
+        return "Babil's Class X CBSE percentage is 81.5%."
+
+    if any(w in q for w in ("12th", "class 12", "class xii", "twelfth", "higher secondary")):
+        return "Babil's Class XII CBSE percentage is 71.2%."
+
+    if any(w in q for w in ("cgpa", "gpa", "current cgpa", "current gpa")):
+        return "Babil's current CGPA is 7.91 at VIT Bhopal University."
+
     if any(w in q for w in ("skill", "tech", "stack")):
         return (
             "Babil's stack: Java, Python, JS/TS, React, Next.js, Django, Flask, "
             "Node.js, Tailwind, Docker, Git, and data tools (Jupyter, Pandas, Scikit-learn)."
+        )
+
+    if any(w in q for w in ("experience", "experienced", "work experience")):
+        return (
+            "Babil has experience in full-stack development, ML projects, open-source "
+            "contribution, campus leadership, and event organization."
+        )
+
+    if any(w in q for w in ("what can", "what i can do", "what he can do", "can you do", "what do you do", "capable", "build")):
+        return (
+            "Babil can build full-stack web apps, React/Next.js frontends, Django/Flask "
+            "backends, REST APIs, ML tools, and data analysis projects."
         )
 
     if "project" in q:
@@ -67,10 +94,10 @@ def fallback_reply(query: str) -> str:
             "Campus 2 Cash (Next.js), plus data projects on Zomato, loans, and Instagram."
         )
 
-    if any(w in q for w in ("gpa", "education", "vit", "college")):
+    if any(w in q for w in ("education", "vit", "college")):
         return "Babil studies Integrated M.Tech CSE (Data Science) at VIT Bhopal with GPA 7.91."
 
-    context = "\n".join(DOCS[:3])
+    context = "\n".join(DOCS)
     return f"Based on Babil's portfolio: {context}"
 
 
@@ -144,7 +171,7 @@ async def chat(req: ChatRequest):
     if len(chat_memory) > 6:
         chat_memory.pop(0)
 
-    context = "\n".join(DOCS[:3])
+    context = "\n".join(DOCS)
 
     if groq_client is None:
         reply = fallback_reply(user_msg)

@@ -13,7 +13,54 @@ const WIDGET_HEIGHT = 330;
 const ICON_SIZE = 56;
 const EDGE_GAP = 20;
 
+const getBasicPortfolioReply = (query: string) => {
+  const q = query.toLowerCase().trim();
+
+  if (/^(10|10th|tenth)(\s|$)/.test(q) || q.includes("class 10") || q.includes("class x")) {
+    return "Babil's Class X CBSE percentage is 81.5%.";
+  }
+
+  if (/^(12|12th|twelfth)(\s|$)/.test(q) || q.includes("class 12") || q.includes("class xii")) {
+    return "Babil's Class XII CBSE percentage is 71.2%.";
+  }
+
+  if (q.includes("cgpa") || q.includes("gpa")) {
+    return "Babil's current CGPA is 7.91 at VIT Bhopal University.";
+  }
+
+  if (q.includes("skill") || q.includes("tech") || q.includes("stack")) {
+    return (
+      "Babil's skills include Java, Python, JavaScript, TypeScript, React, Next.js, " +
+      "Django, Flask, Node.js, Tailwind, Docker, Git, Jupyter, Pandas, and Scikit-learn."
+    );
+  }
+
+  if (q.includes("experience") || q.includes("experienced")) {
+    return (
+      "Babil has experience in full-stack development, ML projects, open-source " +
+      "contribution, campus leadership, and event organization."
+    );
+  }
+
+  if (q.includes("what can") || q.includes("can you do") || q.includes("what do you do") || q.includes("build")) {
+    return (
+      "Babil can build full-stack web apps, React/Next.js frontends, Django/Flask " +
+      "backends, REST APIs, ML tools, and data analysis projects."
+    );
+  }
+
+  if (q.includes("hire") || q.includes("recruit") || q.includes("shortlist")) {
+    return (
+      "Obviously, Babil Nagar has experience in full-stack and ML projects, " +
+      "so you should definitely hire him."
+    );
+  }
+
+  return null;
+};
+
 export default function ChatBot() {
+  const [mounted, setMounted] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -40,6 +87,12 @@ export default function ChatBot() {
   };
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
     setPosition(
       clampPosition(
         window.innerWidth - getWidgetWidth() - EDGE_GAP,
@@ -61,7 +114,7 @@ export default function ChatBot() {
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [minimized]);
+  }, [minimized, mounted]);
 
   const startDrag = (event: PointerEvent<HTMLButtonElement>) => {
     dragOffset.current = {
@@ -112,6 +165,13 @@ export default function ChatBot() {
     setInput("");
     setLoading(true);
 
+    const basicReply = getBasicPortfolioReply(msg);
+    if (basicReply) {
+      setMessages((prev) => [...prev, { role: "ai", text: basicReply }]);
+      setLoading(false);
+      return;
+    }
+
     try {
       const res = await fetch("https://babil-portfolio.onrender.com/chat", {
         method: "POST",
@@ -135,6 +195,8 @@ export default function ChatBot() {
       setLoading(false);
     }
   };
+
+  if (!mounted) return null;
 
   if (minimized) {
     return (
