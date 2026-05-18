@@ -9,12 +9,14 @@ import Certifications from "@/components/sections/Certifications";
 import Education from "@/components/sections/Education";
 import Contact from "@/components/sections/Contact";
 import ChatBot from "@/components/ui/ChatBot";
+import SpaceBackground from "@/components/SpaceBackground";
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="relative min-h-screen text-white overflow-hidden">
+        <SpaceBackground />
         <Hero />
         <About />
         <Skills />
