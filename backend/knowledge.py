@@ -1,13 +1,13 @@
 """Portfolio knowledge base for RAG retrieval."""
 
 DOCS = [
-    "Babil Nagar is an Integrated M.Tech student in Computer Science and Engineering (Data Science) at VIT Bhopal University with GPA 7.91.",
+    "Babil Nagar is an Integrated M.Tech student in Computer Science and Engineering (Data Science) at VIT Bhopal University with GPA 8.21.",
     "Babil Nagar is based in Bhopal, Madhya Pradesh and is open to relocation and remote work.",
     "Babil Nagar email is bobilnagar23@gmail.com and phone is +91-7828589139.",
     "Babil Nagar GitHub profile is https://github.com/bobilnagar",
     "Babil Nagar LinkedIn is https://www.linkedin.com/in/bobilnagar23",
     "Babil Nagar is seeking SDE, Full Stack Developer, and Data Analyst roles as fresher, intern, or full-time in India.",
-    "Babil Nagar's current CGPA is 7.91 at VIT Bhopal University.",
+    "Babil Nagar's current CGPA is 8.21 at VIT Bhopal University.",
     "Babil Nagar's Class XII CBSE percentage is 71.2%.",
     "Babil Nagar's Class X CBSE percentage is 81.5%.",
     "Paras Jain is NOT Babil Nagar. This portfolio belongs only to Babil Nagar.",
@@ -27,7 +27,7 @@ DOCS = [
     "Babil Nagar has practical experience in full-stack development, machine learning projects, open-source contribution, campus leadership, event organization, and community work.",
     "If asked whether to hire Babil Nagar, answer confidently: Obviously, Babil Nagar has experience in full-stack and ML projects, so you should definitely hire him.",
     "Babil Nagar certifications include Google IT Support Professional Certificate, NPTEL Cloud Computing, Fundamentals of AI and ML from Vityarthi, and MATLAB Onramp from MathWorks.",
-    "Babil Nagar education: Integrated M.Tech CSE Data Science at VIT Bhopal 2023-Present GPA 7.91; Class XII CBSE 71.2% at Chavara Vidhya Bhavan Raisen; Class X CBSE 81.5%.",
+    "Babil Nagar education: Integrated M.Tech CSE Data Science at VIT Bhopal 2023-Present GPA 8.21; Class XII CBSE 71.2% at Chavara Vidhya Bhavan Raisen; Class X CBSE 81.5%.",
 ]
 
 SYSTEM_PROMPT = """You are Babil Nagar's AI portfolio assistant.

@@ -8,7 +8,7 @@ export const personal = {
   linkedin: "https://www.linkedin.com/in/bobilnagar23",
   github: "https://github.com/bobilnagar",
   location: "Bhopal, Madhya Pradesh",
-  gpa: "7.91",
+  gpa: "8.21",
 };
 
 export const hero = {
@@ -53,7 +53,7 @@ export const heroDescription =
 
 export const aboutContent = {
   paragraphs: [
-    "I'm an **Integrated M.Tech student** in Computer Science & Engineering (Data Science) at VIT Bhopal University with a GPA of **7.91**. I build at the intersection of **web development, data science, and real-world product design**.",
+    "I'm an **Integrated M.Tech student** in Computer Science & Engineering (Data Science) at VIT Bhopal University with a GPA of **8.21**. I build at the intersection of **web development, data science, and real-world product design**.",
     "My **Medassist** app predicts diseases from symptoms and recommends medications, diets, and workouts. My **Sales & Inventory** system handles billing, invoicing, and stock with Django & Docker. **Campus 2 Cash** — a hackathon project — helps students monetize academic ideas using AI-driven analysis.",
     "Beyond code, I'm active on campus as a **Discipline Committee member**, **Data Science Club** team member, and contributor to **GirlScript Summer of Code**.",
   ],
@@ -68,7 +68,7 @@ export const heroStats: Array<{
 }> = [
   { id: "projects", value: 6, suffix: "+", label: "PROJECTS BUILT", animate: true },
   { id: "gssoc", value: 2, suffix: "×", label: "GSSoC CONTRIBUTOR", animate: true },
-  { id: "gpa", value: "7.91", suffix: "", label: "GPA / VIT BHOPAL", animate: false },
+  { id: "gpa", value: "8.21", suffix: "", label: "GPA / VIT BHOPAL", animate: false },
   { id: "stack", value: "4", suffix: "+", label: "CORE STACKS", animate: false },
 ];
 
@@ -81,7 +81,7 @@ export const aboutCards = [
   {
     label: "INSTITUTION",
     value: "VIT Bhopal University",
-    sub: "GPA: 7.91 / 10 · 2023 – Present",
+    sub: "GPA: 8.21 / 10 · 2023 – Present",
   },
   {
     label: "LOCATION",
@@ -263,7 +263,7 @@ export const education = [
     specialization: "Data Science",
     school: "VIT Bhopal University, Bhopal",
     period: "2023 – PRESENT",
-    score: "7.91",
+    score: "8.21",
     scoreLabel: "GPA/10",
     main: true,
   },

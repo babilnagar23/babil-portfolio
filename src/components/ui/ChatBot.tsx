@@ -25,7 +25,7 @@ const getBasicPortfolioReply = (query: string) => {
   }
 
   if (q.includes("cgpa") || q.includes("gpa")) {
-    return "Babil's current CGPA is 7.91 at VIT Bhopal University.";
+    return "Babil's current CGPA is 8.21 at VIT Bhopal University.";
   }
 
   if (q.includes("skill") || q.includes("tech") || q.includes("stack")) {
