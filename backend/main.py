@@ -50,7 +50,7 @@ def fallback_reply(query: str) -> str:
         return "Reach Babil at bobilnagar23@gmail.com or +91-7828589139."
 
     if "github" in q:
-        return "Babil's GitHub: https://github.com/bobilnagar"
+        return "Babil's GitHub: https://github.com/babilnagar23"
 
     if "linkedin" in q:
         return "Babil's LinkedIn: www.linkedin.com/in/babil-nagar-dev"

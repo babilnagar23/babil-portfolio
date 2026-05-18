@@ -6,7 +6,7 @@ export const personal = {
   email: "bobilnagar23@gmail.com",
   phone: "+91-7828589139",
   linkedin: "https://www.linkedin.com/in/babil-nagar-dev",
-  github: "https://github.com/bobilnagar",
+  github: "https://github.com/babilnagar23",
   location: "Bhopal, Madhya Pradesh",
   gpa: "8.21",
 };
@@ -173,7 +173,7 @@ export const projects = [
     number: "01",
     category: "ML · HEALTHCARE",
     title: "Medassist — Medical Recommendation System",
-    url: "https://github.com/bobilnagar/Medassist",
+    url: "https://github.com/babilnagar23/Medassist",
     stack: "Python · Flask · HTML · CSS · Jupyter · Machine Learning",
     bullets: [
       "Flask-based medical recommendation web app that **predicts diseases** from user-entered symptoms using ML models.",
@@ -186,7 +186,7 @@ export const projects = [
     number: "02",
     category: "FULL-STACK · BUSINESS",
     title: "Sales & Inventory Management System",
-    url: "https://github.com/bobilnagar/Sales_and_inventory_management",
+    url: "https://github.com/babilnagar23/Sales_and_inventory_management",
     stack: "Django · HTML · CSS · JavaScript · Bootstrap · Ajax · Docker",
     bullets: [
       "Django-based system with **Bootstrap and Ajax** for a seamless user experience.",
@@ -199,7 +199,7 @@ export const projects = [
     number: "03",
     category: "HACKATHON · NEXT.JS",
     title: "Campus 2 Cash",
-    url: "https://github.com/bobilnagar/campus-2-cash",
+    url: "https://github.com/babilnagar23/campus-2-cash",
     stack: "Next.js · React · Tailwind CSS · API Integration · TypeScript",
     bullets: [
       "Hackathon project helping students **convert academic projects into monetizable ideas** using AI-based analysis.",
