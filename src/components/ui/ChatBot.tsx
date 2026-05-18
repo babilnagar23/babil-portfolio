@@ -56,6 +56,10 @@ const getBasicPortfolioReply = (query: string) => {
     );
   }
 
+  if (q.includes("anoushka")) {
+    return "Kahani Hai Ji 🙃";
+  }
+
   return null;
 };
 
