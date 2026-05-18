@@ -25,18 +25,18 @@ const particles = Array.from({ length: 25 }, (_, i) => ({
 
 export default function SpaceBackground() {
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden bg-[#050816]">
+    <div className="fixed inset-0 -z-10 overflow-hidden bg-[#000000]">
       {/* Main dark gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#050816] via-[#09001f] to-[#120224]" />
+      <div className="absolute inset-0 bg-[#000000]" />
 
-      {/* Purple glow */}
-      <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-purple-700/20 blur-3xl animate-pulse" />
+      {/* Deep blue glow - nearly invisible */}
+      <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-black/5 blur-3xl" />
 
-      {/* Blue glow */}
-      <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] rounded-full bg-cyan-500/10 blur-3xl animate-pulse" />
+      {/* Cyan glow - nearly invisible */}
+      <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] rounded-full bg-black/5 blur-3xl" />
 
-      {/* Center glow */}
-      <div className="absolute top-1/2 left-1/2 w-[700px] h-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-600/10 blur-3xl" />
+      {/* Center glow - nearly invisible */}
+      <div className="absolute top-1/2 left-1/2 w-[700px] h-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-black/5 blur-3xl" />
 
       {/* Stars */}
       <div className="absolute inset-0">
@@ -68,7 +68,7 @@ export default function SpaceBackground() {
         {particles.map((particle) => (
           <motion.div
             key={particle.id}
-            className="absolute w-1 h-1 bg-purple-400 rounded-full"
+            className="absolute w-1 h-1 bg-gray-500 rounded-full"
             suppressHydrationWarning
             style={{
               top: `${particle.top}%`,
