@@ -53,7 +53,7 @@ def fallback_reply(query: str) -> str:
         return "Babil's GitHub: https://github.com/bobilnagar"
 
     if "linkedin" in q:
-        return "Babil's LinkedIn: https://www.linkedin.com/in/bobilnagar23"
+        return "Babil's LinkedIn: www.linkedin.com/in/babil-nagar-dev"
 
     if any(w in q for w in ("hire", "recruit", "select", "shortlist")):
         return (

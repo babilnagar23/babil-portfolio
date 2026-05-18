@@ -5,7 +5,7 @@ DOCS = [
     "Babil Nagar is based in Bhopal, Madhya Pradesh and is open to relocation and remote work.",
     "Babil Nagar email is bobilnagar23@gmail.com and phone is +91-7828589139.",
     "Babil Nagar GitHub profile is https://github.com/bobilnagar",
-    "Babil Nagar LinkedIn is https://www.linkedin.com/in/bobilnagar23",
+    "Babil Nagar LinkedIn is https://www.linkedin.com/in/babil-nagar-dev",
     "Babil Nagar is seeking SDE, Full Stack Developer, and Data Analyst roles as fresher, intern, or full-time in India.",
     "Babil Nagar's current CGPA is 8.21 at VIT Bhopal University.",
     "Babil Nagar's Class XII CBSE percentage is 71.2%.",
