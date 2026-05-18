@@ -43,7 +43,7 @@ def fallback_reply(query: str) -> str:
     if any(w in q for w in ("who are you", "who is babil", "about you", "about babil")):
         return (
             "I'm Babil Nagar's portfolio assistant. Babil is an Int. M.Tech CSE (Data Science) "
-            "student at VIT Bhopal (GPA 7.91), building full-stack apps and ML projects."
+            "student at VIT Bhopal (GPA 8.21), building full-stack apps and ML projects."
         )
 
     if any(w in q for w in ("email", "contact", "phone")):
@@ -68,7 +68,7 @@ def fallback_reply(query: str) -> str:
         return "Babil's Class XII CBSE percentage is 71.2%."
 
     if any(w in q for w in ("cgpa", "gpa", "current cgpa", "current gpa")):
-        return "Babil's current CGPA is 7.91 at VIT Bhopal University."
+        return "Babil's current CGPA is 8.21 at VIT Bhopal University."
 
     if any(w in q for w in ("skill", "tech", "stack")):
         return (
@@ -95,7 +95,7 @@ def fallback_reply(query: str) -> str:
         )
 
     if any(w in q for w in ("education", "vit", "college")):
-        return "Babil studies Integrated M.Tech CSE (Data Science) at VIT Bhopal with GPA 7.91."
+        return "Babil studies Integrated M.Tech CSE (Data Science) at VIT Bhopal with GPA 8.21."
 
     context = "\n".join(DOCS)
     return f"Based on Babil's portfolio: {context}"
