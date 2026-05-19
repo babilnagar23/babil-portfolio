@@ -9,6 +9,7 @@ export const personal = {
   github: "https://github.com/babilnagar23",
   location: "Bhopal, Madhya Pradesh",
   gpa: "8.21",
+  cv: "/Babil_nagar_resume_in.pdf",
 };
 
 export const hero = {
@@ -127,7 +128,7 @@ export const skillCategories = [
   {
     title: "DATA & ML",
     skills: [
-      { name: "Jupyter", highlight: false },
+      { name: "Jupyter", highlight: true },
       { name: "Pandas", highlight: false },
       { name: "Scikit-learn", highlight: false },
       { name: "Data Analysis", highlight: true },
@@ -147,8 +148,9 @@ export const skillCategories = [
       { name: "GitHub", highlight: true },
       { name: "GitHub Actions", highlight: false },
       { name: "Docker", highlight: false },
-      { name: "Vercel", highlight: false },
-      { name: "VS Code", highlight: false },
+      { name: "Vercel", highlight: true },
+      { name: "Render", highlight: true },
+      { name: "VS Code", highlight: true },
     ],
   },
 ];
@@ -157,13 +159,14 @@ export const experience = {
   sectionTag: "OPEN SOURCE & COMMUNITY",
   sectionTitle: { plain: "Beyond ", em: "Code" },
   role: "Open Source & Campus Contributor",
-  org: "GIRLSCRIPT · VIT BHOPAL",
+  org: ["GIRLSCRIPT · VIT BHOPAL , ", " JPMorgan Chase & Co."],
   badge: "Current",
   date: "2023 – 2026",
   bullets: [
     "Contributor to **GirlScript Summer of Code** (2026), collaborating on open-source projects and improving real-world codebases.",
+    "Completed the **Software Engineering** Job Simulation by **JPMorgan Chase & Co.** via Forage, working with Spring Boot, REST APIs, Apache Kafka, SQL, and backend microservice development.",
     "**Discipline Committee Member** for Advitya 2023–24 and Vivan 2023 at VIT Bhopal.",
-    "Team Member, **Data Science Club** and **Central India Club**.", "Organizing Team Member for **Convocation 2023**.",
+    "Team Member, **Data Science Club** and **Central India Club**.", "Organizing Team Member of **Convocation 2023, VIT Bhopal**.",
     "Completed **7-day Annual NSS Camp**, building leadership and community engagement skills.",
   ],
 };
@@ -215,7 +218,7 @@ export const certifications = [
   {
     name: "Google IT Support Professional Certificate",
     issuer: "Coursera",
-    year: "2025",
+    year: "2026",
     url: "https://drive.google.com/file/d/1AnjLbM-IUerJdRf5uXY1v3NWKVgDdzz8/view?usp=drivesdk",
     icon: "google",
   },
@@ -227,10 +230,17 @@ export const certifications = [
     icon: "girlscript",
   },
   {
+    name: "Software Engineering Job Simulation",
+    issuer: "JPMorgan Chase & Co.",
+    year: "2026",
+    url: "https://drive.google.com/file/d/18BNku6IYfFQJYXqelJFyAnq_vm1XELij/view?usp=sharing",
+    icon: "code",
+  },
+  {
     name: "NPTEL — Cloud Computing",
     issuer: "IIT / NPTEL",
     year: "2024",
-    url: null,
+    url: "https://drive.google.com/file/d/1lnYH4fU0BCu4kyNFWS8kF7AyGUu-l2uf/view?usp=sharing",
     icon: "cloud",
   },
   {

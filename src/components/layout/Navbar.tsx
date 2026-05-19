@@ -51,8 +51,8 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <a href="#contact" className="hidden md:inline-flex btn-ghost text-xs py-2 px-4">
-          Contact
+        <a href={personal.cv} download className="hidden md:inline-flex btn-ghost text-xs py-2 px-4">
+          Download CV
         </a>
       </nav>
     </header>
