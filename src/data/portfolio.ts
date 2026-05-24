@@ -244,10 +244,10 @@ export const certifications = [
     icon: "cloud",
   },
   {
-    name: "Fundamentals of AI and Machine Learning",
+    name: "Python Essentials",
     issuer: "Vityarthi",
     year: "2024",
-    url: null,
+    url: "https://drive.google.com/file/d/1oZS5aJwDvxkLObBhQX6WGTOFki4x5wyS/view?usp=drivesdk",
     icon: "brain",
   },
   {
