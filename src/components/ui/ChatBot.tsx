@@ -288,7 +288,7 @@ export default function ChatBot() {
             title="Drag anywhere"
           >
             <FiMove className="shrink-0" size={15} />
-            <span className="truncate">Babil's AI Assistant </span>
+            <span className="truncate">Babil&apos;s AI Assistant</span>
           </button>
           <div className="flex items-center gap-1">
             <button
