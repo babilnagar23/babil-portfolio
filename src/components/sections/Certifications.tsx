@@ -23,12 +23,12 @@ export default function Certifications() {
 
     const autoScroll = () => {
       if (!isHovered.current) {
-        container.scrollLeft += 0.5;
+        container.scrollLeft += 0.8;
 
         // infinite loop
         if (
           container.scrollLeft >=
-          container.scrollWidth - container.clientWidth
+          container.scrollWidth / 2
         ) {
           container.scrollLeft = 0;
         }
@@ -61,7 +61,8 @@ export default function Certifications() {
             border-white/10
             bg-white/[0.03]
             backdrop-blur-2xl
-            p-6
+            p-4
+            sm:p-6
             md:p-10
             overflow-hidden
             shadow-[0_0_80px_rgba(139,92,246,0.08)]
@@ -76,14 +77,20 @@ export default function Certifications() {
             onMouseLeave={() => (isHovered.current = false)}
             className="
               flex
-              gap-8
+              gap-4 sm:gap-8
               overflow-x-auto
+              overflow-y-hidden
               scrollbar-custom
               py-4
-              scroll-smooth
+              px-1
+              pb-5
             "
           >
-            {[...certifications, ...certifications].map((cert, i) => (
+            {[
+              ...certifications,
+              ...certifications,
+              ...certifications
+            ].map((cert, i) => (
               <motion.div
                 key={`${cert.id}-${i}`}
                 whileHover={{
@@ -93,7 +100,9 @@ export default function Certifications() {
                 transition={{ duration: 0.3 }}
                 onClick={() => setSelectedCert(cert)}
                 className="
-                  min-w-[320px]
+                  snap-center
+                  min-w-[260px]
+                  sm:min-w-[320px]
                   md:min-w-[380px]
                   rounded-[2rem]
                   overflow-hidden
@@ -116,7 +125,8 @@ export default function Certifications() {
                     alt={cert.title}
                     className="
                       w-full
-                      h-[240px]
+                      h-[180px]
+                      sm:h-[240px]
                       object-cover
                       transition-transform
                       duration-700
@@ -129,7 +139,7 @@ export default function Certifications() {
 
                 {/* CONTENT */}
                 <div className="p-6">
-                  <h3 className="text-white text-2xl font-bold leading-tight mb-3">
+                  <h3 className="text-white text-lg sm:text-2xl font-bold leading-tight mb-3">
                     {cert.title}
                   </h3>
 
@@ -140,8 +150,10 @@ export default function Certifications() {
                   <button
                     className="
                       mt-6
-                      px-5
-                      py-2.5
+                      px-4
+                      py-2
+                      sm:px-5
+                      sm:py-2.5
                       rounded-xl
                       bg-gradient-to-r
                       from-violet-600
