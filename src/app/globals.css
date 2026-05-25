@@ -83,3 +83,31 @@
     @apply w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-txt hover:text-bright hover:border-accent/40 hover:bg-accent/10 transition-all duration-300;
   }
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+  height: 8px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.05);
+  border-radius: 999px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #7c3aed, #06b6d4);
+  border-radius: 999px;
+}
+
+.scrollbar-custom {
+  scrollbar-width: thin;
+  scrollbar-color: #7c3aed rgba(255,255,255,0.05);
+}

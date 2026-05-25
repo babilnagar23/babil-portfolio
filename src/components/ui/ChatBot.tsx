@@ -12,6 +12,7 @@ const WIDGET_WIDTH = 320;
 const WIDGET_HEIGHT = 330;
 const ICON_SIZE = 56;
 const EDGE_GAP = 20;
+const BOTTOM_MARGIN = 24;
 
 const getBasicPortfolioReply = (query: string) => {
   const q = query.toLowerCase().trim();
@@ -74,6 +75,20 @@ export default function ChatBot() {
   const dragStart = useRef({ x: 0, y: 0 });
   const didDrag = useRef(false);
 
+  const getBottomRightPosition = (minimized = false) => {
+  if (typeof window === "undefined") {
+    return { x: 0, y: 0 };
+  }
+
+  const width = minimized ? ICON_SIZE : getWidgetWidth();
+  const height = minimized ? ICON_SIZE : WIDGET_HEIGHT;
+
+  return {
+    x: window.innerWidth - width - EDGE_GAP,
+    y: window.innerHeight - height - BOTTOM_MARGIN,
+  };
+};
+
   const getWidgetWidth = () => {
     if (typeof window === "undefined") return WIDGET_WIDTH;
     return Math.min(WIDGET_WIDTH, window.innerWidth - EDGE_GAP * 2);
@@ -95,29 +110,33 @@ export default function ChatBot() {
   }, []);
 
   useEffect(() => {
-    if (!mounted) return;
+   if (!mounted) return;
 
-    setPosition(
-      clampPosition(
-        window.innerWidth - getWidgetWidth() - EDGE_GAP,
-        window.innerHeight - WIDGET_HEIGHT - EDGE_GAP,
-        getWidgetWidth(),
-      ),
-    );
+   const initialPosition = getBottomRightPosition(minimized);
 
-    const handleResize = () => {
-      setPosition((current) =>
-        clampPosition(
-          current.x,
-          current.y,
-          minimized ? ICON_SIZE : getWidgetWidth(),
-          minimized ? ICON_SIZE : WIDGET_HEIGHT,
-        ),
-      );
-    };
+   setPosition(
+     clampPosition(
+      initialPosition.x,
+      initialPosition.y,
+      minimized ? ICON_SIZE : getWidgetWidth(),
+      minimized ? ICON_SIZE : WIDGET_HEIGHT,
+     ),
+   );
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+   const handleResize = () => {
+     setPosition((current) =>
+       clampPosition(
+        current.x,
+        current.y,
+        minimized ? ICON_SIZE : getWidgetWidth(),
+        minimized ? ICON_SIZE : WIDGET_HEIGHT,
+       ),
+     );
+   };
+
+   window.addEventListener("resize", handleResize);
+
+   return () => window.removeEventListener("resize", handleResize);
   }, [minimized, mounted]);
 
   const startDrag = (event: PointerEvent<HTMLButtonElement>) => {
@@ -207,20 +226,24 @@ export default function ChatBot() {
       <button
         type="button"
         onClick={() => {
-          if (!didDrag.current) setMinimized(false);
+          if (!didDrag.current) setMinimized(false);if (!didDrag.current) {
+            const pos = getBottomRightPosition(false); 
+            setPosition(pos);
+            setMinimized(false);
+          }
         }}
         onPointerDown={startDrag}
         onPointerMove={dragWidget}
         onPointerUp={stopDrag}
         onPointerCancel={stopDrag}
-        className="fixed z-[9999] w-14 h-14 touch-none select-none rounded-full bg-gradient-brand text-bright border border-white/15 shadow-glow flex items-center justify-center cursor-grab active:cursor-grabbing hover:scale-105 transition-transform"
+        className="fixed z-[9999] w-14 h-14 touch-none select-none rounded-full bg-gradient-brand text-bright border border-white/15 shadow-glow flex items-center justify-center cursor-grab active:cursor-grabbing hover:scale-105 transition-all duration-300 ease-out"
         style={{
           left: position.x,
           top: position.y,
           touchAction: "none",
         }}
-        aria-label="Open Ask BOB AI"
-        title="Open Ask BOB AI"
+        aria-label="Open Babil's AI Assistant "
+        title="Open Babil's AI Assistant "
       >
         <FiMessageCircle size={22} />
       </button>
@@ -245,7 +268,7 @@ export default function ChatBot() {
         onPointerCancel={stopDrag}
         className="absolute -left-3 top-1/2 -translate-y-1/2 w-7 h-16 touch-none select-none rounded-full bg-card border border-white/15 text-accent flex items-center justify-center cursor-grab active:cursor-grabbing hover:text-bright hover:border-accent/40 transition-colors"
         style={{ touchAction: "none" }}
-        aria-label="Drag Ask BOB AI"
+        aria-label="Drag Babil's AI Assistant "
         title="Drag anywhere"
       >
         <FiMove size={15} />
@@ -261,11 +284,11 @@ export default function ChatBot() {
             onPointerCancel={stopDrag}
             className="flex min-w-0 flex-1 touch-none select-none items-center gap-2 bg-transparent border-none p-0 text-left text-bright font-semibold cursor-grab active:cursor-grabbing"
             style={{ touchAction: "none" }}
-            aria-label="Drag Ask BOB AI"
+            aria-label="Drag Babil's AI Assistant "
             title="Drag anywhere"
           >
             <FiMove className="shrink-0" size={15} />
-            <span className="truncate">Ask BOB AI</span>
+            <span className="truncate">Babil's AI Assistant </span>
           </button>
           <div className="flex items-center gap-1">
             <button
@@ -288,7 +311,11 @@ export default function ChatBot() {
             </button>
             <button
               type="button"
-              onClick={() => setMinimized(true)}
+              onClick={() => {
+                    const pos = getBottomRightPosition(true);
+                      setPosition(pos);
+                      setMinimized(true);
+              }}
               className="w-8 h-8 rounded-full bg-black/15 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors"
               aria-label="Minimize chat"
               title="Minimize"

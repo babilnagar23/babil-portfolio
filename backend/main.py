@@ -34,11 +34,6 @@ def fallback_reply(query: str) -> str:
     """Rule-based answer when Groq API key is missing."""
     q = query.lower()
 
-    if "paras" in q and "jain" in q:
-        return (
-            "Paras Jain is not me. This portfolio belongs to Babil Nagar — "
-            "Full Stack Developer & Data Science student at VIT Bhopal."
-        )
 
     if any(w in q for w in ("who are you", "who is babil", "about you", "about babil")):
         return (

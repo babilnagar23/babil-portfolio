@@ -214,58 +214,87 @@ export const projects = [
 
 ];
 
+
 export const certifications = [
   {
-    name: "Google IT Support Professional Certificate",
+    id: "1",
+    title: "Google IT Support Professional",
     issuer: "Coursera",
-    year: "2026",
-    url: "https://drive.google.com/file/d/1AnjLbM-IUerJdRf5uXY1v3NWKVgDdzz8/view?usp=drivesdk",
-    icon: "google",
+    date: "2026",
+    imageUrl: "/certificates/GoogleIT.png",
+    verificationUrl:
+      "https://drive.google.com/file/d/1AnjLbM-IUerJdRf5uXY1v3NWKVgDdzz8/view?usp=drivesdk",
+    description:
+      "Completed Google IT Support Professional Certificate covering networking, operating systems, system administration, security, and troubleshooting.",
+    order: 1,
   },
+
   {
-    name: "GirlScript Summer of Code Contributor",
+    id: "2",
+    title: "GirlScript Summer of Code Contributor",
     issuer: "GSSoC",
-    year: "2026",
-    url: "https://drive.google.com/file/d/1p7-_yNQGhjaTN3jV3ofdQ3KxD1-yg3AP/view?usp=drivesdk",
-    icon: "girlscript",
+    date: "2026",
+    imageUrl: "/certificates/contributor.png",
+    verificationUrl:
+      "https://drive.google.com/file/d/1p7-_yNQGhjaTN3jV3ofdQ3KxD1-yg3AP/view?usp=drivesdk",
+    description:
+      "Contributed to open-source projects during GirlScript Summer of Code, collaborating on real-world development tasks and improving codebases.",
+    order: 2,
   },
+
   {
-    name: "Software Engineering Job Simulation",
+    id: "3",
+    title: "Software Engineering Job Simulation",
     issuer: "JPMorgan Chase & Co.",
-    year: "2026",
-    url: "https://drive.google.com/file/d/18BNku6IYfFQJYXqelJFyAnq_vm1XELij/view?usp=sharing",
-    icon: "code",
+    date: "2026",
+    imageUrl: "/certificates/JPMorgan.png",
+    verificationUrl:
+      "https://drive.google.com/file/d/18BNku6IYfFQJYXqelJFyAnq_vm1XELij/view?usp=sharing",
+    description:
+      "Worked with Spring Boot, Apache Kafka, REST APIs, SQL, and backend microservice development through JPMorgan Chase virtual experience program.",
+    order: 3,
   },
+
   {
-    name: "NPTEL — Cloud Computing",
+    id: "4",
+    title: "NPTEL — Cloud Computing",
     issuer: "IIT / NPTEL",
-    year: "2024",
-    url: "https://drive.google.com/file/d/1lnYH4fU0BCu4kyNFWS8kF7AyGUu-l2uf/view?usp=sharing",
-    icon: "cloud",
+    date: "2024",
+    imageUrl: "/certificates/NPTEL.png",
+    verificationUrl:
+      "https://drive.google.com/file/d/1lnYH4fU0BCu4kyNFWS8kF7AyGUu-l2uf/view?usp=sharing",
+    description:
+      "Studied cloud computing concepts including virtualization, distributed systems, cloud infrastructure, and deployment models.",
+    order: 4,
   },
+
   {
-    name: "Python Essentials",
+    id: "5",
+    title: "Python Essentials ",
     issuer: "Vityarthi",
-    year: "2024",
-    url: "https://drive.google.com/file/d/1oZS5aJwDvxkLObBhQX6WGTOFki4x5wyS/view?usp=drivesdk",
-    icon: "brain",
+    date: "2024",
+    imageUrl: "/certificates/VITyarthi.png",
+    verificationUrl: "https://drive.google.com/file/d/1oZS5aJwDvxkLObBhQX6WGTOFki4x5wyS/view?usp=sharing",
+    description:
+      "Learned machine learning fundamentals, AI concepts, supervised learning, and practical applications of intelligent systems.",
+    order: 5,
   },
+
   {
-    name: "MATLAB Onramp",
-    issuer: "MathWorks",
-    year: "2024",
-    url: null,
-    icon: "matlab",
-  },
-  {
-    name: "NSS Camp",
+    id: "6",
+    title: "NSS Camp",
     issuer: "VIT Bhopal University",
-    year: "2025",
-    url: "https://drive.google.com/file/d/1lGVmlcibkjxkmVjWhU6N5J6JBFI0D0h0/view?usp=drivesdk",
-    icon: "heart",
+    date: "2025",
+    imageUrl: "/certificates/NSS.png",
+    verificationUrl:
+      "https://drive.google.com/file/d/1lGVmlcibkjxkmVjWhU6N5J6JBFI0D0h0/view?usp=drivesdk",
+    description:
+      "Participated in a 7-day NSS camp focused on leadership, teamwork, discipline, and community engagement activities.",
+    order: 7,
   },
-  
 ];
+
+
 
 export const education = [
   {
