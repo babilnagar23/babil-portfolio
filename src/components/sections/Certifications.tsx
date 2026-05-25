@@ -1,65 +1,307 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { certifications } from "@/data/portfolio";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { FiAward, FiExternalLink, FiCloud, FiZap, FiHeart, FiCode } from "react-icons/fi";
-
-function getCertificationIcon(iconType: string) {
-  switch (iconType) {
-    case "google":
-      return <span className="text-lg">🔍</span>;
-    case "girlscript":
-      return <span className="text-lg">🚀</span>;
-    case "cloud":
-      return <FiCloud size={18} />;
-    case "brain":
-      return <FiZap size={18} />;
-    case "matlab":
-      return <span className="text-lg">📊</span>;
-    case "heart":
-      return <FiHeart size={18} />;
-    default:
-      return <FiAward size={18} />;
-  }
-}
+import { FiExternalLink, FiX } from "react-icons/fi";
+import { motion } from "framer-motion";
 
 export default function Certifications() {
+  const [selectedCert, setSelectedCert] = useState<any>(null);
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const isHovered = useRef(false);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+
+    if (!container) return;
+
+    let animationFrame: number;
+
+    const autoScroll = () => {
+      if (!isHovered.current) {
+        container.scrollLeft += 0.5;
+
+        // infinite loop
+        if (
+          container.scrollLeft >=
+          container.scrollWidth - container.clientWidth
+        ) {
+          container.scrollLeft = 0;
+        }
+      }
+
+      animationFrame = requestAnimationFrame(autoScroll);
+    };
+
+    animationFrame = requestAnimationFrame(autoScroll);
+
+    return () => cancelAnimationFrame(animationFrame);
+  }, []);
+
   return (
-    <section id="certifications" className="section-padding bg-navy-2/50" aria-labelledby="certs-heading">
+    <section
+      id="certifications"
+      className="section-padding relative overflow-hidden"
+    >
       <SectionHeading
-        title="Certifications"
-        subtitle="Professional credentials and specialized training I've completed to enhance my skills."
+        title="Certificates"
+        subtitle="Credentials and achievements"
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {certifications.map((cert, i) => (
-          <RevealOnScroll key={cert.name} delay={i * 0.06}>
-            <article className="card-glass p-6 h-full flex flex-col" data-cursor-hover>
-              <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center text-accent mb-4">
-                {getCertificationIcon(cert.icon)}
-              </div>
-              <h3 className="text-bright font-semibold text-base mb-2 leading-snug">
-                {cert.name}
-              </h3>
-              <p className="text-dim text-sm mb-1">{cert.issuer}</p>
-              <p className="text-dim/80 text-xs mb-4">{cert.year}</p>
-              {cert.url ? (
+      <RevealOnScroll>
+        <div
+          className="
+            relative
+            rounded-[3rem]
+            border
+            border-white/10
+            bg-white/[0.03]
+            backdrop-blur-2xl
+            p-6
+            md:p-10
+            overflow-hidden
+            shadow-[0_0_80px_rgba(139,92,246,0.08)]
+          "
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-violet-500/[0.03] to-cyan-500/[0.02]" />
+
+          {/* SCROLL CONTAINER */}
+          <div
+            ref={scrollRef}
+            onMouseEnter={() => (isHovered.current = true)}
+            onMouseLeave={() => (isHovered.current = false)}
+            className="
+              flex
+              gap-8
+              overflow-x-auto
+              scrollbar-custom
+              py-4
+              scroll-smooth
+            "
+          >
+            {[...certifications, ...certifications].map((cert, i) => (
+              <motion.div
+                key={`${cert.id}-${i}`}
+                whileHover={{
+                  y: -10,
+                  scale: 1.02,
+                }}
+                transition={{ duration: 0.3 }}
+                onClick={() => setSelectedCert(cert)}
+                className="
+                  min-w-[320px]
+                  md:min-w-[380px]
+                  rounded-[2rem]
+                  overflow-hidden
+                  bg-white/[0.04]
+                  border
+                  border-white/10
+                  hover:border-violet-500/40
+                  transition-all
+                  duration-500
+                  cursor-pointer
+                  group
+                  backdrop-blur-xl
+                  flex-shrink-0
+                "
+              >
+                {/* IMAGE */}
+                <div className="relative overflow-hidden">
+                  <img
+                    src={cert.imageUrl}
+                    alt={cert.title}
+                    className="
+                      w-full
+                      h-[240px]
+                      object-cover
+                      transition-transform
+                      duration-700
+                      group-hover:scale-105
+                    "
+                  />
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                </div>
+
+                {/* CONTENT */}
+                <div className="p-6">
+                  <h3 className="text-white text-2xl font-bold leading-tight mb-3">
+                    {cert.title}
+                  </h3>
+
+                  <p className="text-zinc-400 text-sm">
+                    {cert.issuer} • {cert.date}
+                  </p>
+
+                  <button
+                    className="
+                      mt-6
+                      px-5
+                      py-2.5
+                      rounded-xl
+                      bg-gradient-to-r
+                      from-violet-600
+                      to-cyan-500
+                      text-white
+                      text-sm
+                      font-semibold
+                      hover:scale-105
+                      transition-all
+                      shadow-lg
+                    "
+                  >
+                    View Certificate →
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </RevealOnScroll>
+
+      {/* MODAL */}
+      {selectedCert && (
+        <div
+          className="
+            fixed
+            inset-0
+            z-[999]
+            flex
+            items-center
+            justify-center
+            bg-black/70
+            backdrop-blur-md
+            p-4
+          "
+          onClick={() => setSelectedCert(null)}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="
+              relative
+              max-w-6xl
+              w-full
+              rounded-[2.5rem]
+              overflow-hidden
+              border
+              border-white/10
+              bg-[#050816]/95
+              backdrop-blur-2xl
+              shadow-2xl
+              grid
+              md:grid-cols-2
+            "
+          >
+            {/* LEFT */}
+            <div className="p-6 md:p-8 flex items-center justify-center">
+              <img
+                src={selectedCert.imageUrl}
+                alt={selectedCert.title}
+                className="
+                  rounded-2xl
+                  border
+                  border-white/10
+                  shadow-2xl
+                  max-h-[80vh]
+                  object-contain
+                "
+              />
+            </div>
+
+            {/* RIGHT */}
+            <div className="p-8 md:p-12 flex flex-col justify-center">
+              <h2 className="text-4xl font-bold text-violet-400 mb-10">
+                {selectedCert.title}
+              </h2>
+
+              <div className="space-y-8">
+                <div>
+                  <p className="text-zinc-500 uppercase text-sm mb-2">
+                    Issuer
+                  </p>
+
+                  <p className="text-white text-2xl font-semibold">
+                    {selectedCert.issuer}
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-zinc-500 uppercase text-sm mb-2">
+                    Issue Date
+                  </p>
+
+                  <p className="text-white text-xl">
+                    {selectedCert.date}
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-zinc-500 uppercase text-sm mb-3">
+                    Details
+                  </p>
+
+                  <p className="text-zinc-300 leading-relaxed text-lg">
+                    {selectedCert.description}
+                  </p>
+                </div>
+
                 <a
-                  href={cert.url}
+                  href={selectedCert.verificationUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-auto inline-flex items-center gap-1.5 text-accent-cyan text-sm font-medium no-underline hover:gap-2.5 transition-all"
+                  className="
+                    inline-flex
+                    items-center
+                    gap-3
+                    w-fit
+                    px-7
+                    py-4
+                    rounded-2xl
+                    bg-gradient-to-r
+                    from-violet-600
+                    to-cyan-500
+                    text-white
+                    font-bold
+                    hover:scale-105
+                    transition-all
+                    shadow-xl
+                  "
                 >
-                  View Certificate <FiExternalLink size={14} />
+                  VERIFY CERTIFICATE
+                  <FiExternalLink />
                 </a>
-              ) : (
-                <span className="mt-auto inline-flex items-center gap-1.5 text-accent-cyan text-sm font-medium">
-                  View Certificate <FiExternalLink size={14} />
-                </span>
-              )}
-            </article>
-          </RevealOnScroll>
-        ))}
-      </div>
+              </div>
+            </div>
+
+            {/* CLOSE */}
+            <button
+              onClick={() => setSelectedCert(null)}
+              className="
+                absolute
+                top-6
+                right-6
+                w-14
+                h-14
+                rounded-full
+                bg-white
+                text-black
+                flex
+                items-center
+                justify-center
+                text-2xl
+                hover:scale-110
+                transition-all
+              "
+            >
+              <FiX />
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

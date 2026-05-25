@@ -226,7 +226,7 @@ export default function ChatBot() {
       <button
         type="button"
         onClick={() => {
-          if (!didDrag.current) setMinimized(false);if (!didDrag.current) {
+          if (!didDrag.current) {
             const pos = getBottomRightPosition(false); 
             setPosition(pos);
             setMinimized(false);
