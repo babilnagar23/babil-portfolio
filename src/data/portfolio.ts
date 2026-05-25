@@ -290,7 +290,7 @@ export const certifications = [
       "https://drive.google.com/file/d/1lGVmlcibkjxkmVjWhU6N5J6JBFI0D0h0/view?usp=drivesdk",
     description:
       "Participated in a 7-day NSS camp focused on leadership, teamwork, discipline, and community engagement activities.",
-    order: 7,
+    order: 6,
   },
 ];
 
