@@ -195,21 +195,25 @@ export default function Certifications() {
             onClick={(e) => e.stopPropagation()}
             className="
               relative
-              max-w-6xl
               w-full
-              rounded-[2.5rem]
+              max-w-[360px]
+              sm:max-w-[420px]
+              md:max-w-5xl
+              rounded-[2rem]
               overflow-hidden
               border
               border-white/10
               bg-[#050816]/95
               backdrop-blur-2xl
               shadow-2xl
-              grid
+              flex
+              flex-col
+              md:grid
               md:grid-cols-2
             "
           >
             {/* LEFT */}
-            <div className="p-6 md:p-8 flex items-center justify-center">
+            <div className="p-4 sm:p-5 md:p-8 flex items-center justify-center">
               <img
                 src={selectedCert.imageUrl}
                 alt={selectedCert.title}
@@ -218,45 +222,47 @@ export default function Certifications() {
                   border
                   border-white/10
                   shadow-2xl
-                  max-h-[80vh]
+                  max-h-[240px]
+                  sm:max-h-[320px]
+                  md:max-h-[80vh]
                   object-contain
                 "
               />
             </div>
 
             {/* RIGHT */}
-            <div className="p-8 md:p-12 flex flex-col justify-center">
-              <h2 className="text-4xl font-bold text-violet-400 mb-10">
+            <div className="p-5 sm:p-6 md:p-12 flex flex-col justify-center max-h-[50vh] md:max-h-none overflow-y-auto md:overflow-y-visible">
+              <h2 className="text-xl sm:text-2xl md:text-4xl font-bold text-violet-400 mb-6 md:mb-10">
                 {selectedCert.title}
               </h2>
 
-              <div className="space-y-8">
+              <div className="space-y-6 md:space-y-8">
                 <div>
-                  <p className="text-zinc-500 uppercase text-sm mb-2">
+                  <p className="text-zinc-500 uppercase text-xs md:text-sm mb-1 md:mb-2">
                     Issuer
                   </p>
 
-                  <p className="text-white text-2xl font-semibold">
+                  <p className="text-white text-lg md:text-2xl font-semibold">
                     {selectedCert.issuer}
                   </p>
                 </div>
 
                 <div>
-                  <p className="text-zinc-500 uppercase text-sm mb-2">
+                  <p className="text-zinc-500 uppercase text-xs md:text-sm mb-1 md:mb-2">
                     Issue Date
                   </p>
 
-                  <p className="text-white text-xl">
+                  <p className="text-white text-base md:text-xl">
                     {selectedCert.date}
                   </p>
                 </div>
 
                 <div>
-                  <p className="text-zinc-500 uppercase text-sm mb-3">
+                  <p className="text-zinc-500 uppercase text-xs md:text-sm mb-2 md:mb-3">
                     Details
                   </p>
 
-                  <p className="text-zinc-300 leading-relaxed text-lg">
+                  <p className="text-zinc-300 leading-relaxed text-xs sm:text-sm md:text-lg">
                     {selectedCert.description}
                   </p>
                 </div>
@@ -268,15 +274,21 @@ export default function Certifications() {
                   className="
                     inline-flex
                     items-center
-                    gap-3
+                    gap-2
+                    md:gap-3
                     w-fit
-                    px-7
-                    py-4
-                    rounded-2xl
+                    px-4
+                    md:px-5
+                    py-2
+                    md:py-3
+                    rounded-xl
+                    md:rounded-2xl
                     bg-gradient-to-r
                     from-violet-600
                     to-cyan-500
                     text-white
+                    text-xs
+                    md:text-base
                     font-bold
                     hover:scale-105
                     transition-all
@@ -296,8 +308,10 @@ export default function Certifications() {
                 absolute
                 top-6
                 right-6
-                w-14
-                h-14
+                w-11
+                h-11
+                sm:w-14
+                sm:h-14
                 rounded-full
                 bg-white
                 text-black

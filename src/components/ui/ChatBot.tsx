@@ -130,6 +130,16 @@ export default function ChatBot() {
 
   useEffect(() => {
     setMounted(true);
+
+    if (typeof window !== "undefined") {
+      // Mobile devices
+      if (window.innerWidth < 768) {
+        setMinimized(true);
+      } else {
+        // Desktop
+        setMinimized(false);
+      }
+    }
   }, []);
 
   useEffect(() => {
