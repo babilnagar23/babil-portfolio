@@ -1,6 +1,7 @@
 "use client";
 
 import { navLinks, personal } from "@/data/portfolio";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 import { useEffect, useState } from "react";
 
 export default function Navbar() {
@@ -51,9 +52,13 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <a href={personal.cv} download className="hidden md:inline-flex btn-ghost text-xs py-2 px-4">
-          Download CV
-        </a>
+        <div className="flex items-center gap-3 md:gap-4">
+          <ThemeToggle />
+
+          <a href={personal.cv} download className="hidden md:inline-flex btn-ghost text-xs py-2 px-4">
+            Download CV
+          </a>
+        </div>
       </nav>
     </header>
   );

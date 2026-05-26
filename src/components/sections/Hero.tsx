@@ -21,19 +21,19 @@ export default function Hero() {
       className="min-h-screen flex items-center pt-28 pb-16 px-6 md:px-12 max-w-6xl mx-auto"
       aria-label="Introduction"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center w-full">
+      <div className="hero-shell grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center w-full">
         {/* Left — text */}
         <div>
           <motion.p
             {...fade(0.1)}
-            className="text-accent font-medium text-lg mb-2"
+            className="text-accent font-semibold text-lg mb-2"
           >
             {hero.greeting}
           </motion.p>
 
           <motion.h1
             {...fade(0.2)}
-            className="text-7xl md:text-8xl lg:text-9xl font-extrabold text-bright leading-[1] mb-4"
+            className="hero-title text-7xl md:text-8xl lg:text-9xl font-extrabold leading-[1] mb-4"
             style={{ fontSize: "clamp(3.5rem, 12vw, 10rem)" }}
           >
             {personal.name}
@@ -43,7 +43,7 @@ export default function Hero() {
 
           <motion.p
             {...fade(0.35)}
-            className="text-3xl md:text-4xl font-bold text-bright/90 mb-6 min-h-[48px]"
+            className="text-3xl md:text-4xl font-semibold text-bright/90 mb-6 min-h-[48px]"
           >
             {typedRole || hero.role}
           </motion.p>

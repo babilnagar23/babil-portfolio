@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="relative min-h-screen text-white overflow-hidden">
+      <main className="relative min-h-screen text-bright overflow-hidden">
         <SpaceBackground />
         <Hero />
         <About />

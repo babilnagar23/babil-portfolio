@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import CustomCursor from "@/components/effects/CustomCursor";
 import ParticleBackground from "@/components/effects/ParticleBackground";
+import ThemeProvider from "@/components/providers/ThemeProvider";
 import "./globals.css";
 
 const inter = Inter({
@@ -22,11 +23,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
       <body className="font-sans">
-        <ParticleBackground />
-        <CustomCursor />
-        <div className="relative z-[1]">{children}</div>
+        <ThemeProvider>
+          <ParticleBackground />
+          <CustomCursor />
+          <div className="relative z-[1]">{children}</div>
+        </ThemeProvider>
       </body>
     </html>
   );

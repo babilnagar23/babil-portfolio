@@ -16,10 +16,14 @@ export default function ProfileAvatar() {
       />
       <div
         className="absolute w-[min(300px,78vw)] h-[min(300px,78vw)] rounded-full border border-accent/20 shadow-glow"
+        style={{ boxShadow: "var(--hero-shadow)" }}
         aria-hidden
       />
 
-      <div className="relative w-[min(260px,68vw)] h-[min(260px,68vw)] rounded-full overflow-hidden border-2 border-white/10 bg-card shadow-glow ring-4 ring-accent/20">
+      <div
+        className="relative w-[min(260px,68vw)] h-[min(260px,68vw)] rounded-full overflow-hidden border-2 border-border/70 bg-card shadow-glow ring-4 ring-accent/20"
+        style={{ boxShadow: "var(--hero-shadow)" }}
+      >
         {!imgError ? (
           <Image
             src="/profile.jpg"

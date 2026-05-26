@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
+import { useTheme } from "next-themes";
 
 const randomFromIndex = (index: number, salt: number) => {
   const value = Math.sin(index * 999 + salt * 101) * 10000;
@@ -33,6 +34,8 @@ export default function SpaceBackground() {
   const [particlePositions, setParticlePositions] = useState<Record<number, ParticlePosition>>({});
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
+  const { resolvedTheme } = useTheme();
+  const isLight = resolvedTheme === "light";
 
   useEffect(() => {
     // Initialize particle positions
@@ -78,9 +81,9 @@ export default function SpaceBackground() {
   }, []);
 
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden bg-[#000000]">
+    <div className="fixed inset-0 -z-10 overflow-hidden bg-navy">
       {/* Main dark gradient */}
-      <div className="absolute inset-0 bg-[#000000]" />
+      <div className="absolute inset-0 bg-navy" />
 
       {/* Deep blue glow - nearly invisible */}
       <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-black/5 blur-3xl" />
@@ -96,17 +99,18 @@ export default function SpaceBackground() {
         {stars.map((star) => (
           <motion.span
             key={star.id}
-            className="absolute rounded-full bg-white"
+            className="absolute rounded-full bg-bright"
             suppressHydrationWarning
             style={{
-              width: `${star.size}px`,
-              height: `${star.size}px`,
+              width: `${star.size * (isLight ? 0.6 : 1)}px`,
+              height: `${star.size * (isLight ? 0.6 : 1)}px`,
               top: `${star.top}%`,
               left: `${star.left}%`,
-              opacity: star.opacity,
+              opacity: isLight ? Math.min(star.opacity * 0.25, 0.22) : star.opacity,
+              backgroundColor: isLight ? "rgba(45,212,163,0.28)" : undefined,
             }}
             animate={{
-              opacity: [0.2, 1, 0.2],
+              opacity: isLight ? [0.04, 0.22, 0.04] : [0.2, 1, 0.2],
             }}
             transition={{
               duration: star.duration,
@@ -121,16 +125,20 @@ export default function SpaceBackground() {
         {initialParticles.map((particle) => (
           <motion.div
             key={particle.id}
-            className="absolute w-1 h-1 bg-gray-500 rounded-full shadow-lg shadow-gray-400"
+            className="absolute w-1 h-1 rounded-full bg-accent shadow-lg shadow-accent/30"
             suppressHydrationWarning
             style={{
               top: `${particlePositions[particle.id]?.top ?? particle.baseTop}%`,
               left: `${particlePositions[particle.id]?.left ?? particle.baseLeft}%`,
+              width: isLight ? "0.15rem" : "0.25rem",
+              height: isLight ? "0.15rem" : "0.25rem",
+              backgroundColor: isLight ? "rgba(45,212,163,0.28)" : undefined,
+              boxShadow: isLight ? "0 0 10px rgba(45,212,163,0.22)" : undefined,
             }}
             animate={{
               y: [0, -40, 20, 0],
               x: [0, 15, -20, 0],
-              opacity: [0.3, 1, 0.6, 0.3],
+              opacity: isLight ? [0.08, 0.3, 0.18, 0.08] : [0.3, 1, 0.6, 0.3],
             }}
             transition={{
               duration: particle.duration,
@@ -146,8 +154,8 @@ export default function SpaceBackground() {
         className="absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+            linear-gradient(color-mix(in srgb, var(--text) 10%, transparent) 1px, transparent 1px),
+            linear-gradient(90deg, color-mix(in srgb, var(--text) 10%, transparent) 1px, transparent 1px)
           `,
           backgroundSize: "50px 50px",
         }}
