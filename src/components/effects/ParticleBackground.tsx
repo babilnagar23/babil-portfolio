@@ -18,7 +18,7 @@ class Particle {
   reset() {
     this.x = Math.random() * this.canvasW;
     this.y = Math.random() * this.canvasH;
-    this.size = Math.random() * 1.2 + 0.2;
+    this.size = Math.random() * 1.8 + 0.35;
     this.vx = (Math.random() - 0.5) * 0.15;
     this.vy = (Math.random() - 0.5) * 0.15;
     this.phase = Math.random() * Math.PI * 2;
@@ -28,7 +28,7 @@ class Particle {
     this.x += this.vx;
     this.y += this.vy;
     this.phase += 0.008;
-    this.opacity = 0.08 + Math.sin(this.phase) * 0.12;
+    this.opacity = 0.28 + Math.sin(this.phase) * 0.18;
     if (this.x < -10 || this.x > w + 10 || this.y < -10 || this.y > h + 10) {
       this.canvasW = w;
       this.canvasH = h;
@@ -36,10 +36,10 @@ class Particle {
     }
   }
 
-  draw(ctx: CanvasRenderingContext2D) {
+  draw(ctx: CanvasRenderingContext2D, color: string, opacityScale: number) {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(168, 85, 247, ${this.opacity})`;
+    ctx.fillStyle = `rgba(${color}, ${Math.max(0, Math.min(this.opacity * opacityScale, 1))})`;
     ctx.fill();
   }
 }
@@ -73,9 +73,13 @@ export default function ParticleBackground() {
 
     const tick = () => {
       ctx.clearRect(0, 0, w, h);
+      const styles = getComputedStyle(document.documentElement);
+      const particleColor = styles.getPropertyValue("--particle-rgb").trim() || "168 85 247";
+      const particleOpacity = Number(styles.getPropertyValue("--particle-opacity").trim()) || 0.35;
+      const rgbaColor = particleColor.replaceAll(" ", ", ");
       particles.forEach((p) => {
         p.update(w, h);
-        p.draw(ctx);
+        p.draw(ctx, rgbaColor, particleOpacity);
       });
       frameRef.current = requestAnimationFrame(tick);
     };
@@ -90,7 +94,7 @@ export default function ParticleBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full z-0 pointer-events-none opacity-60"
+      className="fixed inset-0 w-full h-full z-0 pointer-events-none"
       aria-hidden
     />
   );

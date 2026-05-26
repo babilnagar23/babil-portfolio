@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root,
 :root.light {
   --bg-primary: #F5F1EC;
   --bg-secondary: #F3E6E8;
@@ -43,38 +42,66 @@
   --text-soft-rgb: 85 99 122;
   --primary-rgb: 45 212 163;
   --secondary-rgb: 184 242 214;
+  --particle-rgb: 45 212 163;
+  --particle-opacity: 0.28;
 }
 
-.dark {
-  --bg: #020617;
-  --surface: #0f172a;
-  --border: rgba(255,255,255,0.08);
-  --text: #F8FAFC;
+:root,
+:root.dark {
+  --bg-primary: #000000;
+  --bg-secondary: #000000;
+  --card-bg: rgba(5, 5, 8, 0.86);
+
+  --text-primary: #E5E7EB;
+  --text-secondary: #94A3B8;
+  --text-muted: #94A3B8;
+
+  --accent: #A855F7;
+  --accent-cyan: #22D3EE;
+  --accent-soft: #22D3EE;
+
+  --button-primary: #E5E7EB;
+  --button-secondary: rgba(255,255,255,0.05);
+
+  --shadow-glow: 0 0 40px rgba(168,85,247,0.25);
+  --shadow-card: 0 10px 40px rgba(0,0,0,0.45);
+
+  --bg: #000000;
+  --surface: var(--card-bg);
+  --card: var(--card-bg);
+  --border: rgba(255,255,255,0.06);
+  --text: var(--text-primary);
   --text-soft: #94A3B8;
-  --primary: #9333EA;
-  --secondary: #06B6D4;
-  --shadow: rgba(139,92,246,0.2);
-  --hero-shadow: 0 0 80px rgba(147,51,234,0.5);
-  --nav-bg: rgba(2,6,23,0.7);
-  --nav-border: rgba(255,255,255,0.08);
-  --bg-rgb: 2 6 23;
-  --surface-rgb: 15 23 42;
+  --primary: var(--accent);
+  --secondary: var(--accent-cyan);
+  --shadow: rgba(168,85,247,0.25);
+  --hero-shadow:
+    0 0 60px rgba(168,85,247,0.55),
+    0 0 120px rgba(168,85,247,0.18);
+  --nav-bg: rgba(0,0,0,0.72);
+  --nav-border: rgba(255,255,255,0.05);
+  --bg-rgb: 0 0 0;
+  --surface-rgb: 5 5 8;
   --border-rgb: 255 255 255;
-  --text-rgb: 248 250 252;
+  --text-rgb: 229 231 235;
   --text-soft-rgb: 148 163 184;
-  --primary-rgb: 147 51 234;
-  --secondary-rgb: 6 182 212;
+  --primary-rgb: 168 85 247;
+  --secondary-rgb: 34 211 238;
+  --particle-rgb: 255 255 255;
+  --particle-opacity: 0.6;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    background: var(--bg);
   }
 
   body {
     @apply font-sans text-base leading-relaxed overflow-x-hidden antialiased;
     cursor: none;
     color: var(--text);
+    background-color: var(--bg);
     background-image:
       radial-gradient(circle at top left, rgba(45,212,163,0.14), transparent 25%),
       radial-gradient(circle at bottom right, rgba(184,242,214,0.16), transparent 30%),
@@ -82,11 +109,11 @@
     background-attachment: fixed;
   }
 
+  :root:not(.light) body,
+  :root:not(.light),
+  .dark,
   .dark body {
-    background-image:
-      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(147,51,234,0.12), transparent),
-      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(6,182,212,0.08), transparent),
-      var(--bg);
+    background: #000000;
   }
 
   @media (pointer: coarse), (prefers-reduced-motion: reduce) {
@@ -121,6 +148,12 @@
     backdrop-filter: blur(14px);
   }
 
+  .dark .glass-nav {
+    background: rgba(0,0,0,0.72);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    backdrop-filter: blur(16px);
+  }
+
   .card-glass {
     background: color-mix(in srgb, var(--surface) 72%, white);
     border: 1px solid var(--border);
@@ -131,12 +164,23 @@
   }
 
   .dark .card-glass {
-    box-shadow: none;
+    background: rgba(5, 5, 8, 0.82);
+    border: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.35);
   }
 
   .card-glass:hover {
     border-color: color-mix(in srgb, var(--primary) 45%, var(--border));
     box-shadow: 0 0 40px var(--shadow);
+  }
+
+  .dark .card-glass:hover {
+    border-color: rgba(168,85,247,0.3);
+    box-shadow:
+      0 0 30px rgba(168,85,247,0.18),
+      0 10px 40px rgba(0,0,0,0.4);
+    transform: translateY(-4px);
   }
 
   .card-3d {

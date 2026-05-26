@@ -55,6 +55,14 @@ export default function Navbar() {
         <div className="flex items-center gap-3 md:gap-4">
           <ThemeToggle />
 
+          <a
+            href={personal.cv}
+            download
+            className="inline-flex md:hidden btn-ghost text-xs py-2 px-3"
+          >
+            CV
+          </a>
+
           <a href={personal.cv} download className="hidden md:inline-flex btn-ghost text-xs py-2 px-4">
             Download CV
           </a>

@@ -324,7 +324,7 @@ export default function ChatBot() {
       <div className="h-[calc(100%-148px)] overflow-y-auto px-4 py-4 text-sm">
         <div className="space-y-3">
           {messages.length === 0 && (
-            <div className="max-w-[85%] rounded-2xl border border-white/5 bg-white/5 px-4 py-3 text-[13px] leading-relaxed text-gray-400">
+            <div className="max-w-[85%] rounded-2xl border border-white/5 bg-white/5 px-4 py-3 text-[13px] leading-relaxed text-slate-300">
               Ask about my skills, projects, or experience.
             </div>
           )}
@@ -345,7 +345,7 @@ export default function ChatBot() {
             </div>
           ))}
 
-          {loading && <div className="px-1 text-xs text-gray-400">Thinking...</div>}
+          {loading && <div className="px-1 text-xs text-slate-300">Thinking...</div>}
           <div ref={messagesEndRef} />
         </div>
       </div>
@@ -357,7 +357,7 @@ export default function ChatBot() {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
             placeholder="Ask anything..."
-            className="h-11 min-w-0 flex-1 rounded-xl border border-white/10 bg-white/5 px-4 text-[13px] text-white outline-none transition placeholder:text-gray-500 focus:border-cyan-300/40"
+            className="h-11 min-w-0 flex-1 rounded-xl border border-white/10 bg-white/5 px-4 text-[13px] text-white outline-none transition placeholder:text-slate-400 focus:border-cyan-300/40"
           />
 
           <button
