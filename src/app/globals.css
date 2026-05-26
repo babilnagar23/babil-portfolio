@@ -49,12 +49,12 @@
 :root,
 :root.dark {
   --bg-primary: #000000;
-  --bg-secondary: #000000;
-  --card-bg: rgba(5, 5, 8, 0.86);
+  --bg-secondary: #030308;
+  --card-bg: rgba(8, 8, 15, 0.82);
 
-  --text-primary: #E5E7EB;
-  --text-secondary: #94A3B8;
-  --text-muted: #94A3B8;
+  --text-primary: #F3F4F6;
+  --text-secondary: #CBD5E1;
+  --text-muted: #CBD5E1;
 
   --accent: #A855F7;
   --accent-cyan: #22D3EE;
@@ -71,20 +71,20 @@
   --card: var(--card-bg);
   --border: rgba(255,255,255,0.06);
   --text: var(--text-primary);
-  --text-soft: #94A3B8;
+  --text-soft: #CBD5E1;
   --primary: var(--accent);
   --secondary: var(--accent-cyan);
   --shadow: rgba(168,85,247,0.25);
   --hero-shadow:
-    0 0 60px rgba(168,85,247,0.55),
-    0 0 120px rgba(168,85,247,0.18);
-  --nav-bg: rgba(0,0,0,0.72);
+    0 0 40px rgba(168,85,247,0.35),
+    0 0 80px rgba(168,85,247,0.12);
+  --nav-bg: rgba(0,0,0,0.45);
   --nav-border: rgba(255,255,255,0.05);
   --bg-rgb: 0 0 0;
-  --surface-rgb: 5 5 8;
+  --surface-rgb: 8 8 15;
   --border-rgb: 255 255 255;
-  --text-rgb: 229 231 235;
-  --text-soft-rgb: 148 163 184;
+  --text-rgb: 243 244 246;
+  --text-soft-rgb: 203 213 225;
   --primary-rgb: 168 85 247;
   --secondary-rgb: 34 211 238;
   --particle-rgb: 255 255 255;
@@ -113,7 +113,20 @@
   :root:not(.light),
   .dark,
   .dark body {
-    background: #000000;
+    background-color: #000000;
+    background-image:
+      radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+
+  :root:not(.light) body::before,
+  .dark body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 200px rgba(0,0,0,0.4);
   }
 
   @media (pointer: coarse), (prefers-reduced-motion: reduce) {
@@ -149,9 +162,9 @@
   }
 
   .dark .glass-nav {
-    background: rgba(0,0,0,0.72);
+    background: rgba(0,0,0,0.45);
     border-bottom: 1px solid rgba(255,255,255,0.05);
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(18px);
   }
 
   .card-glass {
@@ -164,10 +177,12 @@
   }
 
   .dark .card-glass {
-    background: rgba(5, 5, 8, 0.82);
+    background: rgba(8, 8, 15, 0.82);
     border: 1px solid rgba(255,255,255,0.06);
     backdrop-filter: blur(14px);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+    box-shadow:
+      0 10px 40px rgba(0,0,0,0.45),
+      inset 0 1px 0 rgba(255,255,255,0.03);
   }
 
   .card-glass:hover {

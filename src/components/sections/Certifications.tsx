@@ -203,7 +203,7 @@ export default function Certifications() {
               overflow-hidden
               border
               border-white/10
-              bg-[#050816]/95
+              bg-[#030308]/95
               backdrop-blur-2xl
               shadow-2xl
               flex

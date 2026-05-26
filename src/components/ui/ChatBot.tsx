@@ -257,7 +257,7 @@ export default function ChatBot() {
         onPointerMove={dragWidget}
         onPointerUp={stopDrag}
         onPointerCancel={stopDrag}
-        className="fixed z-[9999] flex touch-none select-none items-center justify-center rounded-2xl border border-white/20 bg-[#090914]/95 text-white shadow-2xl backdrop-blur-xl transition hover:scale-105"
+        className="fixed z-[9999] flex touch-none select-none items-center justify-center rounded-2xl border border-white/20 bg-[#030308]/95 text-white shadow-2xl backdrop-blur-xl transition hover:scale-105"
         style={{
           left: position.x,
           top: position.y,
@@ -280,7 +280,7 @@ export default function ChatBot() {
 
   return (
     <aside
-      className="fixed z-[9999] overflow-hidden rounded-2xl border border-white/10 bg-[#070711]/95 text-white shadow-2xl backdrop-blur-xl"
+      className="fixed z-[9999] overflow-hidden rounded-2xl border border-white/10 bg-[rgba(2,2,8,0.96)] text-white shadow-2xl backdrop-blur-xl"
       style={{
         width: widgetSize,
         height: widgetSize,
@@ -350,7 +350,7 @@ export default function ChatBot() {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 border-t border-white/5 bg-[#090914] p-3">
+      <div className="absolute bottom-0 left-0 right-0 border-t border-white/5 bg-[#030308] p-3">
         <div className="flex items-center gap-2">
           <input
             value={input}
