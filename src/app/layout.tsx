@@ -36,7 +36,7 @@ export const metadata = {
     description:
       "Official portfolio website of Babil Nagar.",
 
-    url: "https://yourdomain.com",
+    url: "https://babil-portfolio.vercel.app/",
 
     siteName: "Babil Nagar Portfolio",
 
