@@ -11,10 +11,37 @@ const inter = Inter({
   weight: ["300", "400", "500", "600", "700", "800"],
 });
 
-export const metadata: Metadata = {
-  title: "Babil Nagar — Full Stack & Data Science",
+export const metadata = {
+  title: "Babil Nagar | AI/ML Developer Portfolio",
+
   description:
-    "Portfolio of Babil Nagar — Full Stack Developer and Data Science student at VIT Bhopal.",
+    "Official portfolio of Babil Nagar — AI/ML Developer, Full Stack Developer, and Data Science student at VIT Bhopal.",
+
+  keywords: [
+    "Babil Nagar",
+    "Babil Nagar portfolio",
+    "Babil Nagar developer",
+    "AI ML Developer",
+    "VIT Bhopal",
+    "Full Stack Developer",
+  ],
+
+  authors: [{ name: "Babil Nagar" }],
+
+  creator: "Babil Nagar",
+
+  openGraph: {
+    title: "Babil Nagar Portfolio",
+
+    description:
+      "Official portfolio website of Babil Nagar.",
+
+    url: "https://yourdomain.com",
+
+    siteName: "Babil Nagar Portfolio",
+
+    type: "website",
+  },
 };
 
 export default function RootLayout({
