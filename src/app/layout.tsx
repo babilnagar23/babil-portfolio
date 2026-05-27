@@ -30,6 +30,10 @@ export const metadata = {
 
   creator: "Babil Nagar",
 
+  verification: {
+      google: "2I54RBBoN_rHUs4SVYuoGjti5gfLnSQNdzGxfc6aRfA",
+    },
+
   openGraph: {
     title: "Babil Nagar Portfolio",
 
@@ -41,6 +45,7 @@ export const metadata = {
     siteName: "Babil Nagar Portfolio",
 
     type: "website",
+    
   },
 };
 
