@@ -32,6 +32,7 @@ const config: Config = {
       fontFamily: {
         display: ["var(--font-inter)", "system-ui", "sans-serif"],
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        "space-grotesk": ["var(--font-space-grotesk)", "system-ui", "sans-serif"],
       },
       backgroundImage: {
         "gradient-brand": "linear-gradient(135deg, var(--primary) 0%, color-mix(in srgb, var(--primary) 65%, var(--secondary)) 50%, var(--secondary) 100%)",

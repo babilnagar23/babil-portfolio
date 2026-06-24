@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import CustomCursor from "@/components/effects/CustomCursor";
 import ParticleBackground from "@/components/effects/ParticleBackground";
 import ThemeProvider from "@/components/providers/ThemeProvider";
@@ -12,7 +12,14 @@ const inter = Inter({
   weight: ["300", "400", "500", "600", "700", "800"],
 });
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata = {
+  metadataBase: new URL("https://babil-portfolio.vercel.app/"),
   title: "Babil Nagar | AI/ML Developer Portfolio",
 
   description:
@@ -32,21 +39,42 @@ export const metadata = {
   creator: "Babil Nagar",
 
   verification: {
-      google: "2I54RBBoN_rHUs4SVYuoGjti5gfLnSQNdzGxfc6aRfA",
-    },
+    google: "2I54RBBoN_rHUs4SVYuoGjti5gfLnSQNdzGxfc6aRfA",
+  },
+
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
 
   openGraph: {
     title: "Babil Nagar Portfolio",
-
-    description:
-      "Official portfolio website of Babil Nagar.",
-
+    description: "Official portfolio website of Babil Nagar.",
     url: "https://babil-portfolio.vercel.app/",
-
     siteName: "Babil Nagar Portfolio",
-
     type: "website",
-    
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Babil Nagar Portfolio",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Babil Nagar Portfolio",
+    description: "Official portfolio website of Babil Nagar.",
+    images: ["/twitter-image.png"],
   },
 };
 
@@ -56,7 +84,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <body className="font-sans">
         <ThemeProvider>
           <SplashProvider>

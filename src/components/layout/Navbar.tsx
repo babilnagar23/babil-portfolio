@@ -4,11 +4,13 @@ import { navLinks, personal } from "@/data/portfolio";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import { useEffect, useState } from "react";
 import { useSplash } from "@/components/providers/SplashProvider";
+import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function Navbar() {
   const [active, setActive] = useState("hero");
   const [scrolled, setScrolled] = useState(false);
-  const { setChatbotOpen } = useSplash();
+  const { isChatbotOpen, setChatbotOpen } = useSplash();
 
   useEffect(() => {
     const sections = document.querySelectorAll<HTMLElement>("section[id]");
@@ -33,13 +35,40 @@ export default function Navbar() {
         }`}
         aria-label="Main navigation"
       >
-        <a 
-          href="#hero" 
-          className="text-lg font-bold gradient-text no-underline"
-          onClick={() => setChatbotOpen(true)}
+        <motion.button
+          onClick={() => setChatbotOpen(!isChatbotOpen)}
+          className="relative flex items-center gap-3 no-underline group"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label="Toggle AI Assistant"
         >
-          {personal.logo}
-        </a>
+          <div className="relative flex items-center justify-center">
+            {/* Blue glow effect on hover */}
+            <div className="absolute inset-0 rounded-full bg-blue-500/0 group-hover:bg-blue-400/30 blur-md transition-all duration-300" />
+            
+            {/* Active assistant ring pulse */}
+            {isChatbotOpen && (
+              <span className="absolute inset-0 rounded-full border-2 border-cyan-400 animate-ping opacity-75"></span>
+            )}
+            
+            <Image
+              src="/avatar.png"
+              alt="Babil Nagar Avatar"
+              width={48}
+              height={48}
+              className={`relative z-10 rounded-full border-2 transition-all duration-300 ${
+                isChatbotOpen 
+                  ? "border-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.5)] rotate-3" 
+                  : "border-white/10 group-hover:border-blue-400/50"
+              } w-[36px] h-[36px] md:w-[48px] md:h-[48px] object-cover`}
+              priority
+            />
+          </div>
+
+          <span className="hidden md:block font-space-grotesk font-semibold text-white tracking-wide text-lg">
+            Babil Nagar
+          </span>
+        </motion.button>
 
         <ul className="hidden md:flex gap-8 list-none m-0 p-0">
           {navLinks.map((link) => (
