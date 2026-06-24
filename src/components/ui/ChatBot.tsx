@@ -96,9 +96,11 @@ export default function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const [minimized, setMinimized] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const { isSplashDone } = useSplash();
+  const { showSplash, isChatbotOpen, setChatbotOpen } = useSplash();
+
+  // Use the global context to determine if expanded. When NOT open, it is minimized.
+  const minimized = !isChatbotOpen;
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const dragOffset = useRef({ x: 0, y: 0 });
@@ -134,13 +136,8 @@ export default function ChatBot() {
     setMounted(true);
 
     if (typeof window !== "undefined") {
-      // Mobile devices
-      if (window.innerWidth < 768) {
-        setMinimized(true);
-      } else {
-        // Desktop
-        setMinimized(false);
-      }
+      // Chatbot defaults to minimized (handled by initial context state).
+      // We don't need to conditionally check window size to set it since it's now explicitly closed by default.
     }
   }, []);
 
@@ -202,7 +199,7 @@ export default function ChatBot() {
   const minimizeChat = () => {
     const nextPosition = getBottomRightPosition(true);
     setPosition(clampPosition(nextPosition.x, nextPosition.y, ICON_SIZE));
-    setMinimized(true);
+    setChatbotOpen(false);
   };
 
   const sendMessage = async () => {
@@ -244,7 +241,7 @@ export default function ChatBot() {
     }
   };
 
-  if (!mounted || !isSplashDone) return null;
+  if (!mounted || showSplash) return null;
 
   if (minimized) {
     return (
@@ -252,7 +249,7 @@ export default function ChatBot() {
         type="button"
         onClick={() => {
           if (!didDrag.current) {
-            setMinimized(false);
+            setChatbotOpen(true);
           }
         }}
         onPointerDown={startDrag}

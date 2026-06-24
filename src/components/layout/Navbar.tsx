@@ -3,10 +3,12 @@
 import { navLinks, personal } from "@/data/portfolio";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import { useEffect, useState } from "react";
+import { useSplash } from "@/components/providers/SplashProvider";
 
 export default function Navbar() {
   const [active, setActive] = useState("hero");
   const [scrolled, setScrolled] = useState(false);
+  const { setChatbotOpen } = useSplash();
 
   useEffect(() => {
     const sections = document.querySelectorAll<HTMLElement>("section[id]");
@@ -31,7 +33,11 @@ export default function Navbar() {
         }`}
         aria-label="Main navigation"
       >
-        <a href="#hero" className="text-lg font-bold gradient-text no-underline">
+        <a 
+          href="#hero" 
+          className="text-lg font-bold gradient-text no-underline"
+          onClick={() => setChatbotOpen(true)}
+        >
           {personal.logo}
         </a>
 

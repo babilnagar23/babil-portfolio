@@ -10,12 +10,10 @@ import Education from "@/components/sections/Education";
 import Contact from "@/components/sections/Contact";
 import ChatBot from "@/components/ui/ChatBot";
 import SpaceBackground from "@/components/SpaceBackground";
-import SplashScreen from "@/components/ui/SplashScreen";
 
 export default function Home() {
   return (
     <>
-      <SplashScreen />
       <Navbar />
       <main className="relative min-h-screen text-bright overflow-hidden">
         <SpaceBackground />

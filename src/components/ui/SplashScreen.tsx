@@ -26,7 +26,7 @@ const generateParticles = (count: number): Particle[] => {
 export default function SplashScreen() {
   const [show, setShow] = useState(true);
   const [particles, setParticles] = useState<Particle[]>([]);
-  const { setSplashDone } = useSplash();
+  const { setShowSplash } = useSplash();
 
   useEffect(() => {
     setParticles(generateParticles(55));
@@ -35,7 +35,8 @@ export default function SplashScreen() {
 
     const timer = setTimeout(() => {
       setShow(false);
-      setSplashDone(true);
+      sessionStorage.setItem("splash-seen", "true");
+      setShowSplash(false);
       document.body.style.overflow = "";
     }, 8500);
 
@@ -43,7 +44,7 @@ export default function SplashScreen() {
       clearTimeout(timer);
       document.body.style.overflow = "";
     };
-  }, [setSplashDone]);
+  }, [setShowSplash]);
 
   if (!show) return null;
 
