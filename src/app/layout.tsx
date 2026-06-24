@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import CustomCursor from "@/components/effects/CustomCursor";
 import ParticleBackground from "@/components/effects/ParticleBackground";
 import ThemeProvider from "@/components/providers/ThemeProvider";
+import SplashProvider from "@/components/providers/SplashProvider";
 import "./globals.css";
 
 const inter = Inter({
@@ -58,9 +59,11 @@ export default function RootLayout({
     <html lang="en" className={inter.variable} suppressHydrationWarning>
       <body className="font-sans">
         <ThemeProvider>
-          <ParticleBackground />
-          <CustomCursor />
-          <div className="relative z-[1]">{children}</div>
+          <SplashProvider>
+            <ParticleBackground />
+            <CustomCursor />
+            <div className="relative z-[1]">{children}</div>
+          </SplashProvider>
         </ThemeProvider>
       </body>
     </html>

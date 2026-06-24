@@ -2,6 +2,7 @@
 
 import { PointerEvent, useCallback, useEffect, useRef, useState } from "react";
 import { FiSend, FiX } from "react-icons/fi";
+import { useSplash } from "@/components/providers/SplashProvider";
 
 interface Message {
   role: "user" | "ai" | "error";
@@ -97,6 +98,7 @@ export default function ChatBot() {
   const [loading, setLoading] = useState(false);
   const [minimized, setMinimized] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const { isSplashDone } = useSplash();
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const dragOffset = useRef({ x: 0, y: 0 });
@@ -242,7 +244,7 @@ export default function ChatBot() {
     }
   };
 
-  if (!mounted) return null;
+  if (!mounted || !isSplashDone) return null;
 
   if (minimized) {
     return (
