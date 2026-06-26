@@ -228,9 +228,21 @@ export const certifications = [
       "Completed Google IT Support Professional Certificate covering networking, operating systems, system administration, security, and troubleshooting.",
     order: 1,
   },
-
   {
     id: "2",
+    title: "Artificial Intelligence Fundamentals",
+    issuer: "IBM",
+    date: "2026",
+    imageUrl: "/certificates/IBM.png",
+    verificationUrl:
+      "https://www.credly.com/badges/fd22fa04-685b-4020-85f0-a77720a4d9f5",
+    description:
+      "Completed AI fundamentals with Python, data science, and machine learning, learning to work with data and use AI tools effectively.",
+    order: 2,
+  },
+
+  {
+    id: "3",
     title: "GirlScript Summer of Code Contributor",
     issuer: "GSSoC",
     date: "2026",
@@ -239,11 +251,11 @@ export const certifications = [
       "https://drive.google.com/file/d/1p7-_yNQGhjaTN3jV3ofdQ3KxD1-yg3AP/view?usp=drivesdk",
     description:
       "Contributed to open-source projects during GirlScript Summer of Code, collaborating on real-world development tasks and improving codebases.",
-    order: 2,
+    order: 3,
   },
 
   {
-    id: "3",
+    id: "4",
     title: "Software Engineering Job Simulation",
     issuer: "JPMorgan Chase & Co.",
     date: "2026",
@@ -252,11 +264,11 @@ export const certifications = [
       "https://drive.google.com/file/d/18BNku6IYfFQJYXqelJFyAnq_vm1XELij/view?usp=sharing",
     description:
       "Worked with Spring Boot, Apache Kafka, REST APIs, SQL, and backend microservice development through JPMorgan Chase virtual experience program.",
-    order: 3,
+    order: 4,
   },
 
   {
-    id: "4",
+    id: "5",
     title: "NPTEL — Cloud Computing",
     issuer: "IIT / NPTEL",
     date: "2024",
@@ -265,11 +277,11 @@ export const certifications = [
       "https://drive.google.com/file/d/1lnYH4fU0BCu4kyNFWS8kF7AyGUu-l2uf/view?usp=sharing",
     description:
       "Studied cloud computing concepts including virtualization, distributed systems, cloud infrastructure, and deployment models.",
-    order: 4,
+    order: 5  ,
   },
 
   {
-    id: "5",
+    id: "6",
     title: "Python Essentials ",
     issuer: "Vityarthi",
     date: "2024",
@@ -277,11 +289,11 @@ export const certifications = [
     verificationUrl: "https://drive.google.com/file/d/1oZS5aJwDvxkLObBhQX6WGTOFki4x5wyS/view?usp=sharing",
     description:
       "Learned machine learning fundamentals, AI concepts, supervised learning, and practical applications of intelligent systems.",
-    order: 5,
+    order: 6,
   },
 
   {
-    id: "6",
+    id: "7",
     title: "NSS Camp",
     issuer: "VIT Bhopal University",
     date: "2025",
@@ -290,7 +302,7 @@ export const certifications = [
       "https://drive.google.com/file/d/1lGVmlcibkjxkmVjWhU6N5J6JBFI0D0h0/view?usp=drivesdk",
     description:
       "Participated in a 7-day NSS camp focused on leadership, teamwork, discipline, and community engagement activities.",
-    order: 6,
+    order: 7,
   },
 ];
 
