@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import CustomCursor from "@/components/effects/CustomCursor";
-import ParticleBackground from "@/components/effects/ParticleBackground";
 import ThemeProvider from "@/components/providers/ThemeProvider";
 import SplashProvider from "@/components/providers/SplashProvider";
 import "./globals.css";
@@ -93,7 +92,6 @@ export default function RootLayout({
       <body className="font-sans">
         <ThemeProvider>
           <SplashProvider>
-            <ParticleBackground />
             <CustomCursor />
             <div className="relative z-[1]">{children}</div>
           </SplashProvider>
