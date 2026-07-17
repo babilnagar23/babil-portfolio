@@ -38,7 +38,7 @@ export default function SplashScreen() {
       sessionStorage.setItem("splash-seen", "true");
       setShowSplash(false);
       document.body.style.overflow = "";
-    }, 8500);
+    }, 4000);
 
     return () => {
       clearTimeout(timer);
@@ -90,14 +90,14 @@ export default function SplashScreen() {
         className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#050505] overflow-hidden"
         initial={{ opacity: 1 }}
         animate={{ opacity: 0 }}
-        transition={{ delay: 7.8, duration: 0.7, ease: "easeInOut" }}
+        transition={{ delay: 3.5, duration: 0.5, ease: "easeInOut" }}
       >
         {/* Background particles */}
         <motion.div
           className="absolute inset-0 pointer-events-none"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.4, ease: "easeOut" }}
+          transition={{ duration: 1.0, ease: "easeOut" }}
         >
           {particles.map((p) => (
             <motion.div
@@ -138,7 +138,7 @@ export default function SplashScreen() {
           }}
           transition={{
             times: [0, 0.35, 0.75, 1],
-            duration: 8.5,
+            duration: 4.0,
             ease: "easeInOut",
           }}
         />
@@ -154,7 +154,7 @@ export default function SplashScreen() {
           }}
           transition={{
             times: [0, 0.8, 1],
-            duration: 3.2,
+            duration: 1.5,
             ease: "easeInOut",
           }}
         >
@@ -167,7 +167,7 @@ export default function SplashScreen() {
               filter: "blur(0px)",
             }}
             transition={{
-              duration: 2.5,
+              duration: 1.0,
               ease: [0.22, 1, 0.36, 1],
             }}
           >
@@ -183,8 +183,8 @@ export default function SplashScreen() {
               filter: "blur(0px)",
             }}
             transition={{
-              delay: 0.5,
-              duration: 2.0,
+              delay: 0.3,
+              duration: 0.7,
               ease: "easeOut",
             }}
           >
@@ -207,8 +207,8 @@ export default function SplashScreen() {
               scale: [0.95, 0.95, 1, 1],
             }}
             transition={{
-              times: [0, 0.38, 0.55, 1],
-              duration: 8.5,
+              times: [0, 0.375, 0.55, 1],
+              duration: 4.0,
               ease: "easeOut",
             }}
           >
@@ -224,8 +224,8 @@ export default function SplashScreen() {
                     filter: "blur(0px)",
                   }}
                   transition={{
-                    delay: 3.2 + index * 0.08,
-                    duration: 0.8,
+                    delay: 1.5 + index * 0.08,
+                    duration: 0.6,
                     ease: [0.22, 1, 0.36, 1],
                   }}
                 >
@@ -249,8 +249,8 @@ export default function SplashScreen() {
                 opacity: [0, 0, 1, 0],
               }}
               transition={{
-                times: [0, 0.55, 0.7, 1],
-                duration: 8.5,
+                times: [0, 0.575, 0.725, 1],
+                duration: 4.0,
                 ease: "easeInOut",
               }}
             />
@@ -265,7 +265,7 @@ export default function SplashScreen() {
               }}
               transition={{
                 times: [0, 0.45, 0.55, 0.75, 0.9, 1],
-                duration: 8.5,
+                duration: 4.0,
                 ease: "easeInOut",
               }}
             />
@@ -277,8 +277,8 @@ export default function SplashScreen() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
-              delay: 4.8,
-              duration: 1.5,
+              delay: 2.5,
+              duration: 0.8,
               ease: "easeOut",
             }}
           >
