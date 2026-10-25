@@ -64,6 +64,22 @@ const getBasicPortfolioReply = (query: string) => {
   if (q.includes("anoushka")) {
     return "Kahani Hai Ji 🙃";
   }
+  
+if (
+  /\b(can he|can babil|can you|does he|is he able to)\b/i.test(q) &&
+  /\b(make|build|create|develop|design)\b/i.test(q) &&
+  /\b(website|websites|web site|websites|web application|web app)\b/i.test(q)
+) {
+  return (
+    "Yes, absolutely! Babil Nagar is a web developer who can design and " +
+    "build modern, responsive, and user-friendly websites and full-stack " +
+    "web applications. He works with HTML, CSS, JavaScript, React, Next.js, " +
+    "Django, and Flask to create websites with interactive frontends, " +
+    "powerful backends, and REST APIs. You can explore his projects, " +
+    "including Campus 2 Cash, to see his development work."
+  );
+}
+
 
   return null;
 };

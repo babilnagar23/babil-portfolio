@@ -156,6 +156,19 @@ export const skillCategories = [
   },
 ];
 
+export const internship = {
+  role: "Web Development Intern",
+  org: "Inspire Media World",
+  date: "11 May 2026 – 10 July 2026",
+  location: "Bhopal, India",
+  bullets: [
+    "Built and maintained responsive web applications using HTML, CSS, JavaScript, Django, and Bootstrap.",
+    "Developed RESTful APIs, handled authentication, and supported testing, bug fixing, and deployment tasks.",
+  ],
+  certificateUrl:
+    "https://drive.google.com/file/d/1LcoESGlRARurh56EJV2ubvy8OS2NJaYk/view?usp=sharing",
+};
+
 export const experience = {
   sectionTag: "OPEN SOURCE & COMMUNITY",
   sectionTitle: { plain: "Beyond ", em: "Code" },
@@ -175,6 +188,21 @@ export const experience = {
 export const projects = [
   {
     number: "01",
+    category: "AI · PRODUCTIVITY · MOBILE",
+    title: "ProductiveAI — AI Productivity Tracker",
+    url: "https://github.com/babilnagar23/ai-productivity-tracker-new",
+    demo: "https://ai-productivity-tracker-new.vercel.app/",
+    stack: "Flutter · Django REST Framework · PostgreSQL · Google Calendar API",
+    bullets: [
+      "Built an AI-powered productivity app for managing tasks, routines, schedules, and daily goals.",
+      "Integrated Google Calendar synchronization, productivity analytics, and offline-first local storage.",
+      "Implemented background synchronization to keep locally saved data and backend data in sync.",
+    ],
+    tags: ["Flutter", "Django REST", "AI", "Productivity"],
+  },
+
+  {
+    number: "02",
     category: "ML · HEALTHCARE",
     title: "Medassist — Medical Recommendation System",
     url: "https://github.com/babilnagar23/Medassist",
@@ -187,7 +215,7 @@ export const projects = [
     tags: ["Flask", "ML", "Healthcare"],
   },
   {
-    number: "02",
+    number: "03",
     category: "FULL-STACK · BUSINESS",
     title: "Sales & Inventory Management System",
     url: "https://github.com/babilnagar23/Sales_and_inventory_management",
@@ -200,7 +228,7 @@ export const projects = [
     tags: ["Django", "Docker", "Inventory"],
   },
   {
-    number: "03",
+    number: "04",
     category: "HACKATHON · NEXT.JS",
     title: "Campus 2 Cash",
     url: "https://github.com/babilnagar23/campus-2-cash",

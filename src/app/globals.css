@@ -2,49 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root.light {
-  --bg-primary: #F5F1EC;
-  --bg-secondary: #F3E6E8;
-  --card-bg: #DDD2D1;
+  /* Background colors */
+  --bg-primary: #F5F1EB;
+  --bg-secondary: #F0EAE2;
+  --card-bg: #FFFEFC;
 
-  --text-primary: #111111;
-  --text-secondary: #55637A;
-  --text-muted: #7A8699;
+  /* Text colors */
+  --text-primary: #151515;
+  --text-secondary: #686762;
+  --text-muted: #85817B;
 
-  --accent: #2DD4A3;
-  --accent-soft: #B8F2D6;
+  /* Accent colors */
+  --accent: #F15A24;
+  --accent-cyan: #F15A24;
+  --accent-soft: #FFC6AD;
 
-  --border: #D8D3CF;
+  /* Borders */
+  --border: #DED9D2;
 
-  --button-primary: #000000;
-  --button-secondary: #D6D1D4;
+  /* Buttons */
+  --button-primary: #F15A24;
+  --button-secondary: #EAE6E0;
 
-  --shadow: rgba(0,0,0,0.06);
+  /* Shadows */
+  --shadow: rgba(30, 24, 18, 0.07);
+  --shadow-glow: 0 0 30px rgba(241, 90, 36, 0.12);
+  --shadow-card: 0 10px 35px rgba(30, 24, 18, 0.05);
 
+  /* Main background gradient */
   --bg: linear-gradient(
-    to bottom right,
-    var(--bg-primary),
-    var(--bg-secondary),
-    #FAF8F5
+    135deg,
+    #F5F1EB 0%,
+    #F2EDE6 55%,
+    #FAF8F4 100%
   );
+
+  /* Shared theme variables */
   --surface: var(--card-bg);
   --text: var(--text-primary);
   --text-soft: var(--text-secondary);
   --primary: var(--accent);
   --secondary: var(--accent-soft);
-  --hero-shadow: 0 0 60px rgba(45,212,163,0.32);
-  --nav-bg: rgba(255,255,255,0.55);
-  --nav-border: rgba(0,0,0,0.04);
-  --bg-rgb: 245 241 236;
-  --surface-rgb: 221 210 209;
-  --border-rgb: 216 211 207;
-  --text-rgb: 17 17 17;
-  --text-soft-rgb: 85 99 122;
-  --primary-rgb: 45 212 163;
-  --secondary-rgb: 184 242 214;
-  --particle-rgb: 45 212 163;
-  --particle-opacity: 0.28;
+
+  /* Hero glow */
+  --hero-shadow: 0 0 60px rgba(241, 90, 36, 0.15);
+
+  /* Navigation */
+  --nav-bg: rgba(255, 255, 255, 0.88);
+  --nav-border: rgba(30, 25, 20, 0.09);
+
+  /* RGB values for effects and utilities */
+  --bg-rgb: 245 241 235;
+  --surface-rgb: 255 254 252;
+  --border-rgb: 222 217 210;
+  --text-rgb: 21 21 21;
+  --text-soft-rgb: 104 103 98;
+  --primary-rgb: 241 90 36;
+  --secondary-rgb: 255 198 173;
+
+  /* Background particles */
+  --particle-rgb: 241 90 36;
+  --particle-opacity: 0.12;
 }
+
 
 :root,
 :root.dark {

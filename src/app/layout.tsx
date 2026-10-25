@@ -26,6 +26,7 @@ export const metadata = {
 
   keywords: [
     "Babil Nagar",
+    "Bobil Nagar",
     "Babil Nagar portfolio",
     "Babil Nagar developer",
     "AI ML Developer",

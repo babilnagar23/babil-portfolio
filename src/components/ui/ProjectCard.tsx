@@ -8,6 +8,7 @@ interface ProjectCardProps {
   category: string;
   title: string;
   url: string;
+  demo?: string;
   stack: string;
   bullets: string[];
   tags: string[];
@@ -32,6 +33,7 @@ export default function ProjectCard({
   category,
   title,
   url,
+  demo,
   stack,
   bullets,
   tags,
@@ -75,14 +77,26 @@ export default function ProjectCard({
           </span>
         ))}
       </div>
-      <a
-        href={url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-1 text-dim text-xs hover:text-accent transition-colors no-underline mt-auto"
-      >
-        <FiGithub size={12} /> {githubPath}
-      </a>
+      <div className="mt-auto flex flex-wrap gap-4 pt-2 text-sm">
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-accent no-underline transition-colors hover:text-bright hover:underline"
+        >
+          <FiGithub size={14} /> GitHub ↗
+        </a>
+        {demo && (
+          <a
+            href={demo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent no-underline transition-colors hover:text-bright hover:underline"
+          >
+            Live Demo ↗
+          </a>
+        )}
+      </div>
     </article>
   );
 }
